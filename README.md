@@ -35,3 +35,9 @@
 
 ---
 
+### 👉 플랫폼 엔티티 구성도
+
+![image](https://user-images.githubusercontent.com/57346455/93711725-9100dc00-fb8b-11ea-9105-52f0f300ca61.png)
+
+---
+
