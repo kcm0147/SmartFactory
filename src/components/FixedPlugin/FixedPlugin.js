@@ -1,24 +1,4 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { Component } from "react";
-
-// reactstrap components
-import { Button } from "reactstrap";
 
 class FixedPlugin extends Component {
   constructor(props) {
@@ -101,37 +81,6 @@ class FixedPlugin extends Component {
                 onClick={() => this.activateMode("dark")}
               />{" "}
               <span className="color-label">DARK MODE</span>{" "}
-            </li>
-            <li className="button-container">
-              <Button
-                href="https://www.creative-tim.com/product/black-dashboard-react"
-                color="primary"
-                block
-                className="btn-round"
-              >
-                Download Now
-              </Button>
-              <Button
-                color="default"
-                block
-                className="btn-round"
-                outline
-                href="https://demos.creative-tim.com/black-dashboard-react/#/documentation/tutorial"
-              >
-                Documentation
-              </Button>
-            </li>
-            <li className="header-title">Want more components?</li>
-            <li className="button-container">
-              <Button
-                href="https://www.creative-tim.com/product/black-dashboard-pro-react"
-                className="btn-round"
-                disabled
-                block
-                color="danger"
-              >
-                Get pro version
-              </Button>
             </li>
           </ul>
         </div>

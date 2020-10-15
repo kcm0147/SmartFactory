@@ -18,7 +18,7 @@
 import Dashboard from "views/Dashboard.js";
 import Icons from "views/Icons.js";
 import Map from "views/Map.js";
-import Notifications from "views/Notifications.js";
+// import Notifications from "views/Notifications.js";
 // import Rtl from "views/Rtl.js";
 // import TableList from "views/TableList.js";
 // import Typography from "views/Typography.js";
@@ -49,14 +49,14 @@ var routes = [
     component: Map,
     layout: "/admin"
   },
-  {
-    path: "/notifications",
-    name: "Log-out",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Notifications,
-    layout: "/admin"
-  }
+  // {
+  //   path: "/notifications",
+  //   name: "Log-out",
+  //   rtlName: "إخطارات",
+  //   icon: "tim-icons icon-bell-55",
+  //   component: Notifications,
+  //   layout: "/admin"
+  // }
   // {
   //   path: "/user-profile",
   //   name: "User Profile",

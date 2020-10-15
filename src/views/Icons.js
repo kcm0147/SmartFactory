@@ -18,14 +18,14 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+// import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 
 class Icons extends React.Component {
   render() {
     return (
-      <>
-        <div className="content">
-          <Row>
+      <div className="content">
+        <h2> Setting Section </h2>
+        {/* <Row>
             <Col md="12">
               <Card>
                 <CardHeader>
@@ -1141,9 +1141,8 @@ class Icons extends React.Component {
                 </CardBody>
               </Card>
             </Col>
-          </Row>
-        </div>
-      </>
+          </Row> */}
+      </div>
     );
   }
 }
