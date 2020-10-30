@@ -1,0 +1,19 @@
+# Define Data Type
+type Item {
+	id: Int!
+	name: String!
+	age: Int!
+	from: String!
+}
+
+# Define Query
+type Query {
+	items: [Item!]!
+	item(id: Int!): Item
+}
+
+#Define Mutation
+type Mutation {
+	addItem(name: String!, age: Int!, from: String!): Boolean!
+	delItem(id: Int!): Boolean!
+}

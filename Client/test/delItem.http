@@ -1,0 +1,11 @@
+POST http://localhost:4000
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation itemData($id : Int!){
+  delItem(id : $id)
+}
+
+{
+    "id" : 41507
+}
