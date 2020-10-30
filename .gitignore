@@ -1,4 +1,4 @@
 /build
-./Client/node_modules
+Client/node_modules
 package-lock.json
 /build
