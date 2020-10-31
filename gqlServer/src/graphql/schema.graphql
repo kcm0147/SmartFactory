@@ -15,3 +15,8 @@ type Mutation {
 	addItem(id: Int!, weight: Int!): Boolean!
 	delItem(id: Int!): Boolean!
 }
+
+#Define Subscription
+type Subscription {
+	newItem: Item
+}

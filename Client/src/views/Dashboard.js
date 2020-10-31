@@ -51,6 +51,7 @@ import {
 } from "variables/charts.js";
 
 import { LiveChart } from "variables/LiveChart.js"
+import { PreChart } from "variables/PreChart.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -155,7 +156,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <LiveChart/>
+                    <PreChart/>
                   </div>
                 </CardBody>
               </Card>
