@@ -4,6 +4,6 @@ X-REQUEST-TYPE: GraphQL
 
 query {
   items {
-    id, name
+    id, weight
   }
 }

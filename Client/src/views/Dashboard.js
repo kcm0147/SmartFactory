@@ -50,6 +50,8 @@ import {
   chartExample4
 } from "variables/charts.js";
 
+import { LiveChart } from "variables/LiveChart.js"
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -66,6 +68,99 @@ class Dashboard extends React.Component {
     return (
       <>
         <div className="content">
+          <Row>
+          <Col xs="12">
+              <Card>
+                <CardHeader>
+                  <Row>
+                    <Col className="text-left" sm="6">
+                      <h5 className="card-category">효동이네 공장</h5>
+                      <CardTitle tag="h2">온-습도</CardTitle>
+                    </Col>
+                    <Col sm="6">
+                      <ButtonGroup
+                        className="btn-group-toggle float-right"
+                        data-toggle="buttons"
+                      >
+                        <Button
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data1"
+                          })}
+                          color="info"
+                          id="0"
+                          size="sm"
+                          onClick={() => this.setBgChartData("data1")}
+                        >
+                          <input
+                            defaultChecked
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            온-습도
+                          </span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-single-02" />
+                          </span>
+                        </Button>
+                        <Button
+                          color="info"
+                          id="1"
+                          size="sm"
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data2"
+                          })}
+                          onClick={() => this.setBgChartData("data2")}
+                        >
+                          <input
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            온도
+                          </span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-gift-2" />
+                          </span>
+                        </Button>
+                        <Button
+                          color="info"
+                          id="2"
+                          size="sm"
+                          tag="label"
+                          className={classNames("btn-simple", {
+                            active: this.state.bigChartData === "data3"
+                          })}
+                          onClick={() => this.setBgChartData("data3")}
+                        >
+                          <input
+                            className="d-none"
+                            name="options"
+                            type="radio"
+                          />
+                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                            습도
+                          </span>
+                          <span className="d-block d-sm-none">
+                            <i className="tim-icons icon-tap-02" />
+                          </span>
+                        </Button>
+                      </ButtonGroup>
+                    </Col>
+                  </Row>
+                </CardHeader>
+                <CardBody>
+                  <div className="chart-area">
+                    <LiveChart/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
           <Row>
             <Col xs="12">
               <Card className="card-chart">
@@ -163,7 +258,7 @@ class Dashboard extends React.Component {
             </Col>
           </Row>
           <Row>
-          <Col xs="12">
+            <Col xs="12">
               <Card className="card-chart">
                 <CardHeader>
                   <h5 className="card-category">공정라인 1</h5>
@@ -186,7 +281,7 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col xs="12">
-            <Card className="card-chart">
+              <Card className="card-chart">
                 <CardHeader>
                   <h5 className="card-category">공정라인 2</h5>
                   <CardTitle tag="h3">
@@ -208,7 +303,7 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col xs="12">
-            <Card className="card-chart">
+              <Card className="card-chart">
                 <CardHeader>
                   <h5 className="card-category">공정라인 3</h5>
                   <CardTitle tag="h3">
@@ -223,12 +318,12 @@ class Dashboard extends React.Component {
                     />
                   </div>
                 </CardBody>
-              </Card>       
+              </Card>
             </Col>
           </Row>
           {/* 나머지 차트 3개 */}
           {/* TASK, Today */}
-          
+
         </div>
       </>
     );

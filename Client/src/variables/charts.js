@@ -19,6 +19,9 @@
 // // // Chart variables
 // #############################
 
+// import {useQuery} from "@apollo/react-hooks";
+// import {GET_VALUES} from "../controller/item";
+
 // chartExample1 and chartExample2 options
 let chart1_2_options = {
   maintainAspectRatio: false,
@@ -78,7 +81,7 @@ let chart1_2_options = {
 // #########################################
 // // // used inside src/views/Dashboard.js
 // #########################################
-let chartExample1 = {
+export let chartExample1 = {
   data1: canvas => {
     let ctx = canvas.getContext("2d");
 
@@ -115,6 +118,7 @@ let chartExample1 = {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
+          // data: useQuery(GET_VALUES)
           data: [26.5, 27.4, 25.0, 26.3, 28.9, 24.0, 33.1, 26.3]
         },
         {
@@ -227,7 +231,7 @@ let chartExample1 = {
 // #########################################
 // // // used inside src/views/Dashboard.js
 // #########################################
-let chartExample2 = {
+export let chartExample2 = {
   data: canvas => {
     let ctx = canvas.getContext("2d");
 
@@ -266,7 +270,7 @@ let chartExample2 = {
 // #########################################
 // // // used inside src/views/Dashboard.js
 // #########################################
-let chartExample3 = {
+export let chartExample3 = {
   data: canvas => {
     let ctx = canvas.getContext("2d");
 
@@ -345,7 +349,7 @@ let chartExample3 = {
 // #########################################
 // // // used inside src/views/Dashboard.js
 // #########################################
-const chartExample4 = {
+export const chartExample4 = {
   data: canvas => {
     let ctx = canvas.getContext("2d");
 
@@ -429,11 +433,4 @@ const chartExample4 = {
       ]
     }
   }
-};
-
-module.exports = {
-  chartExample1, // in src/views/Dashboard.js
-  chartExample2, // in src/views/Dashboard.js
-  chartExample3, // in src/views/Dashboard.js
-  chartExample4 // in src/views/Dashboard.js
 };
