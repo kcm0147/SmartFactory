@@ -2,3 +2,5 @@
 Client/node_modules
 gqlServer/node_modules
 /build
+testRasp/gqlServer/node_modules
+testRasp/raspi/node_modules

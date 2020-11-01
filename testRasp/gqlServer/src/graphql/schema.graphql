@@ -1,0 +1,22 @@
+# Define Data Type
+type Item {
+	id: Int!
+	weight: Int!
+}
+
+# Define Query
+type Query {
+	items: [Item!]!
+	item(id: Int!): Item
+}
+
+#Define Mutation
+type Mutation {
+	addItem(id: Int!, weight: Int!): Boolean!
+	delItem(id: Int!): Boolean!
+}
+
+#Define Subscription
+type Subscription {
+	newItem: Item
+}
