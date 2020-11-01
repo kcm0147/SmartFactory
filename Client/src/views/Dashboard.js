@@ -19,7 +19,7 @@ import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 // reactstrap components
 import {
@@ -44,13 +44,14 @@ import {
 
 // core components
 import {
-  chartExample1,
+  // chartExample1,
   // chartExample2,
   chartExample3,
   // chartExample4
 } from "variables/charts.js";
 
-import LineChart from "variables/LiveLineChart.js"
+import TemperatureChart from "variables/TemperatureChart.js"
+import HumidityChart from "variables/HumidityChart.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -156,7 +157,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <LineChart/>
+                    <TemperatureChart/>
                   </div>
                 </CardBody>
               </Card>
@@ -249,10 +250,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <Line
-                      data={chartExample1[this.state.bigChartData]}
-                      options={chartExample1.options}
-                    />
+                    <HumidityChart/>
                   </div>
                 </CardBody>
               </Card>

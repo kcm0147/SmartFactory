@@ -5,20 +5,20 @@ import { Subscription, Query } from "react-apollo";
 import gql from "graphql-tag";
 
 
-class LineChart extends React.Component {
+class HumidityChart extends React.Component {
   constructor(props) {
     super(props);
     this.querystr = gql`query {
-      temperatures {
+      humidities {
         label: id
-        data: temperature
+        data: humidity
       }
     }`
     this.subscribestr = `
     subscription {
-      newTemperature{
+      newHumidity{
         label: id
-        data: temperature
+        data: humidity
       }
     }
   `;
@@ -36,8 +36,8 @@ class LineChart extends React.Component {
             {({ data, loading }) => {
               if (loading) return null;
 
-              data.items.push(newdata.newItem);
-              if(data.items.length >20) data.items.shift();
+              data.humidities.push(newdata.newHumidity);
+              if(data.humidities.length >20) data.humidities.shift();
 
               // create graphql2chartjs instance
               let g2c = new graphql2chartjs(data, () => {
@@ -62,4 +62,4 @@ class LineChart extends React.Component {
   };
 }
 
-export default LineChart;
+export default HumidityChart;
