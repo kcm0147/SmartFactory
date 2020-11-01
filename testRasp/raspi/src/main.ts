@@ -1,10 +1,8 @@
 
 import SerialPort from "serialport";
-import {ApolloClient, HttpLink, split, gql} from "apollo-boost";
-import { WebSocketLink } from "apollo-link-ws";
-import { getMainDefinition } from "apollo-utilities";
-import { InMemoryCache } from "apollo-cache-inmemory"
-import {Item, GET_ITEM, GET_ITEMS, ADD_ITEM, DEL_ITEM} from "./controller/item"
+import ApolloClient, { gql } from "apollo-boost";
+
+import {Temperature,Humidity,GET_ITEM, GET_ITEMS, ADD_TEMPERATURE,ADD_HUMIDITY} from "./controller/item"
 import 'cross-fetch/polyfill';
 
 
@@ -19,34 +17,9 @@ const parser = port.pipe(new Readline({
     encoding: "utf8",
 }));
 
-
-const httpLink = new HttpLink({
-  uri: "http://localhost:4000"
-})
-
-const wsLink = new WebSocketLink({
-  uri: "ws://localhost:4000/",
-  options: {
-      reconnect: true,
-  },
-})
-
-const link = split(
-  ({query}) => {
-      const definition = getMainDefinition(query);
-      return definition.kind === "OperationDefinition" && definition.operation === "subscription";
-  },
-  wsLink,
-  httpLink
-);
-
-
 const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache()
+  uri: "http://220.66.219.69:4000/"
 });
-
-
 
 async function getItems(client : ApolloClient<unknown>){
   const result = await client.query ({
@@ -67,23 +40,32 @@ async function getItem(client : ApolloClient<unknown>, id : number){
   console.log(result.data.item)
 }
 
-async function addItem(client : ApolloClient<unknown>, obj : Item){
+async function addTemperature(client : ApolloClient<unknown>, obj : Temperature){
   const result = await client.mutate ({
-    mutation: ADD_ITEM,
+    mutation: ADD_TEMPERATURE,
     variables: obj
   });
 
-  console.log(result.data.result)
+  console.log(result)
 }
 
-async function delItem(client : ApolloClient<unknown>, id : number){
+async function addHumidity(client : ApolloClient<unknown>, obj : Humidity){
   const result = await client.mutate ({
-    mutation: DEL_ITEM,
-    variables: {id}
+    mutation: ADD_HUMIDITY,
+    variables: obj
   });
 
-  console.log(result.data.result)
+  console.log(result)
 }
+
+// async function delItem(client : ApolloClient<unknown>, id : number){
+//   const result = await client.mutate ({
+//     mutation: DEL_ITEM,
+//     variables: {id}
+//   });
+
+//   console.log(result.data.result)
+// }
 
 async function serialOpen()
 {
@@ -92,54 +74,40 @@ async function serialOpen()
             return console.log(msg.message)
         }
     })
+
+    console.log("correct")
     
     parser.on('data', (data : string)=>{
         data = data.substring(0, data.length-2);
-        //console.log(data)
+        console.log(data)
         let chunk = data.split(',')
-        //console.log(chunk)
-        let list : number[] = [];
+        // console.log(chunk)
+        let list : string[] = [];
 
-        for(var i=0; i<chunk.length; i++){
-            list.push(Number.parseFloat(chunk[i]));
-        }
-
-        let obj : Item = {
+        // temperature 인지 humidity 인지 분리할 수 있는 무언가를 만들어야함
+        let temperature : Temperature = {
           id : 0,
           name : "Temperature",
-          temperature : list[0],
-          humidity : list[1],
+          temperature : chunk[0]
         }
+        addTemperature(client,temperature);
+        console.log("Temperature : " + temperature)
 
-        console.log(list)
-        addItem(client,obj);
-        //sendUpdateMessage(list)
+        let humidity : Humidity = {
+          id : 0,
+          name : "Humidity",
+          humidity : chunk[1]
+        }
+        addHumidity(client,humidity);
+        console.log("Humidity : " + humidity)
+
+
+        
     });
 
   }
 
 
-
-
-    async function main(){
-      // list 조회
-
+    ( function main(){
       serialOpen();
-
-
-      // await getItems(client);
-      // // // item 조회
-      // await getItem(client, 14123);
-    
-      // // // item 추가
-      // let obj : Item = {
-      //   id : 0,
-      //   name : "Kil-Dong",
-      //   age : 5,
-      //   from : "Korea"
-      // }
-      // await addItem(client, obj);
-    
-      // // item 삭제
-      // await delItem(client, 24123);
-    }
+    })();

@@ -1,11 +1,16 @@
 import { gql } from "apollo-boost";
 
-export interface Item{
-    id : number,
-    name : string,
-    age : number,
-    from : string
+export interface Temperature {
+  id : number,
+  name : string,
+  temperature : string
 }
+export interface Humidity{
+  id : number,
+  name : string,
+  humidity : string
+}
+
 
 export const GET_ITEMS = gql`
 query {
@@ -13,26 +18,33 @@ query {
     id, name
   }
 }
-`
+`;
 
 export const GET_ITEM = gql`
 query ($id : Int!){
   item(id : $id) {
     id 
-    name 
-    age
+    name
+    temperature
+    humidity
   }
 }
 `;
 
-export const ADD_ITEM = gql`
-mutation ($name : String!, $age : Int!, $from : String!){
-  result : addItem(name : $name, age : $age, from : $from) 
+export const ADD_TEMPERATURE = gql`
+mutation ($name : String!, $temperature : String!){
+  result : addTemperature(name : $name, temperature : $temperature) 
 }
 `;
 
-export const DEL_ITEM = gql`
-mutation itemData($id : Int!){
-  result : delItem(id : $id)
+export const ADD_HUMIDITY = gql`
+mutation ($name : String!,$humidity : String!){
+  result : addItem(name : $name,humidity : $humidity) 
 }
 `;
+
+// export const DEL_ITEM = gql`
+// mutation itemData($id : Int!){
+//   result : delItem(id : $id)
+// }
+// `;
