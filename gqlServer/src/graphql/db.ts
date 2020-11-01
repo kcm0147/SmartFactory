@@ -4,10 +4,10 @@ export type Item = {
 }
 
 export let sampleItems : Item[] = [
-    {id:1, weight: 10},
-    {id:2, weight: 2},
-    {id:3, weight: 14},
-    {id:4, weight: 8}
+    {id:1, weight: 0},
+    {id:2, weight: 0},
+    {id:3, weight: 0},
+    {id:4, weight: 0}
 ]
 
 export const getById = (id : number) => {
