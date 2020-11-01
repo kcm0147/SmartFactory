@@ -5,7 +5,7 @@ import { Subscription, Query } from "react-apollo";
 import gql from "graphql-tag";
 
 
-class PreChart extends React.Component {
+class LineChart extends React.Component {
   constructor(props) {
     super(props);
     this.querystr = gql`query {
@@ -45,7 +45,8 @@ class PreChart extends React.Component {
                   chartType: 'line',
                   pointBackgroundColor: 'yellow',
                   borderColor: 'yellow',
-                  borderWidth: 1
+                  backgroundColor:"rgba(29,140,248,0.1)",
+                  borderWidth: 1,
                 };
               });
 
@@ -61,4 +62,4 @@ class PreChart extends React.Component {
   };
 }
 
-export default PreChart;
+export default LineChart;
