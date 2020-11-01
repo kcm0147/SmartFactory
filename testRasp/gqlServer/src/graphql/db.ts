@@ -1,13 +1,11 @@
 export type Item = {
     id : number,
-    weight : number
+    name : string,
+    temperature : number,
+    humidity : number
 }
 
 export let sampleItems : Item[] = [
-    {id:1, weight: 10},
-    {id:2, weight: 2},
-    {id:3, weight: 14},
-    {id:4, weight: 8}
 ]
 
 export const getById = (id : number) => {
@@ -16,7 +14,7 @@ export const getById = (id : number) => {
 }
 
 export function addItem (obj : Item){
-    if(obj.weight === undefined){
+    if(obj.name === undefined){
             return false;
         }
         
@@ -26,9 +24,9 @@ export function addItem (obj : Item){
     return true;
 }
 
-export function delItem (id : number){
-    const filteredPeople = sampleItems.filter(i => i.id === id);
+// export function delItem (id : number){
+//     const filteredPeople = sampleItems.filter(i => i.id === id);
     
-    filteredPeople.map(e => (sampleItems.splice(sampleItems.indexOf(e), 1)));
-    return true;
-}
+//     filteredPeople.map(e => (sampleItems.splice(sampleItems.indexOf(e), 1)));
+//     return true;
+// }
