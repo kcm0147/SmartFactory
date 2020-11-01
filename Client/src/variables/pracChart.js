@@ -21,7 +21,7 @@ subscription{
 let unsubscribe = null;
 
 // Chart component
-const LiveChart = () => (
+const PracChart = () => (
   <Query query={gql`${querystr}`}>
     {({ loading, data, subscribeToMore }) => {
       if (loading)  return null;
@@ -59,4 +59,4 @@ const LiveChart = () => (
   </Query>
 );
 
-export { LiveChart };
+export { PracChart };

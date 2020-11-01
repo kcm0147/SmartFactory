@@ -50,8 +50,9 @@ import {
   chartExample4
 } from "variables/charts.js";
 
-import { LiveChart } from "variables/LiveChart.js"
-import { PreChart } from "variables/PreChart.js"
+// import { LiveChart } from "variables/LiveChart.js"
+// import PreChart from "variables/PreChart.js"
+import { PracChart } from "variables/pracChart.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class Dashboard extends React.Component {
       bigChartData: "data1"
     };
   }
+
   setBgChartData = name => {
     this.setState({
       bigChartData: name
@@ -76,7 +78,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col className="text-left" sm="6">
                       <h5 className="card-category">효동이네 공장</h5>
-                      <CardTitle tag="h2">온-습도</CardTitle>
+                      <CardTitle tag="h2">연습차트</CardTitle>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
@@ -156,7 +158,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <PreChart/>
+                    <PracChart/>
                   </div>
                 </CardBody>
               </Card>

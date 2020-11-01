@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import client from "./apollo";
 
 import AdminLayout from "layouts/Admin/Admin.js";
@@ -15,12 +16,14 @@ const hist = createBrowserHistory();
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Router history={hist}>
-      <Switch>
-        <Route path="/admin" render={props => <AdminLayout {...props} />} />
-        <Redirect from="/" to="/admin/dashboard" />
-      </Switch>
-    </Router>
+    <ApolloHooksProvider client={client}>
+      <Router history={hist}>
+        <Switch>
+          <Route path="/admin" render={props => <AdminLayout {...props} />} />
+          <Redirect from="/" to="/admin/dashboard" />
+        </Switch>
+      </Router>
+    </ApolloHooksProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );

@@ -1,5 +1,4 @@
 /build
 Client/node_modules
 gqlServer/node_modules
-package-lock.json
 /build
