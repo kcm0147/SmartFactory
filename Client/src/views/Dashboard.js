@@ -45,14 +45,12 @@ import {
 // core components
 import {
   chartExample1,
-  chartExample2,
+  // chartExample2,
   chartExample3,
-  chartExample4
+  // chartExample4
 } from "variables/charts.js";
 
-// import { LiveChart } from "variables/LiveChart.js"
-// import PreChart from "variables/PreChart.js"
-import { PracChart } from "variables/pracChart.js"
+import PreChart from "variables/PreChart.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -77,8 +75,8 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">효동이네 공장</h5>
-                      <CardTitle tag="h2">연습차트</CardTitle>
+                      <h5 className="card-category">공정라인 1</h5>
+                      <CardTitle tag="h2">온도 측정</CardTitle>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
@@ -158,7 +156,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <PracChart/>
+                    <PreChart/>
                   </div>
                 </CardBody>
               </Card>
@@ -170,8 +168,8 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">효동이네 공장</h5>
-                      <CardTitle tag="h2">온-습도</CardTitle>
+                      <h5 className="card-category">공정라인 1</h5>
+                      <CardTitle tag="h2">습도 측정</CardTitle>
                     </Col>
                     <Col sm="6">
                       <ButtonGroup
@@ -266,30 +264,8 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <h5 className="card-category">공정라인 1</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-bell-55 text-info" />{" "}
-                    무게
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample2.data}
-                      options={chartExample2.options}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">공정라인 2</h5>
-                  <CardTitle tag="h3">
                     <i className="tim-icons icon-delivery-fast text-primary" />{" "}
-                    전압
+                    무게 측정
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -303,30 +279,6 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
           </Row>
-
-          <Row>
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">공정라인 3</h5>
-                  <CardTitle tag="h3">
-                    <i className="tim-icons icon-send text-success" /> 전류
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample4.data}
-                      options={chartExample4.options}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          {/* 나머지 차트 3개 */}
-          {/* TASK, Today */}
-
         </div>
       </>
     );

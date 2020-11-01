@@ -17,63 +17,41 @@ class PreChart extends React.Component {
     this.subscribestr = `
     subscription {
       newItem{
-        labe: id
+        label: id
         data: weight
       }
     }
   `;
   }
+
   // Chart component
   render() {
     return (
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
           if (loading) return null;
-
           const newdata = data;
-          console.log(newdata);
+
           return <Query query={gql`${this.querystr}`}>
             {({ data, loading }) => {
               if (loading) return null;
 
-              // create graphql2chartjs instance
-              const g2c = new graphql2chartjs();
+              data.items.push(newdata.newItem);
+              if(data.items.length >20) data.items.shift();
 
-              data.items.push(newdata);
-              console.log(data);
-              // total.items.push(newdata);
-              // add graphql data to graphql2chartjs instance while adding different chart types and properties
-              g2c.add(data, (dataSetName, dataPoint) => {
+              // create graphql2chartjs instance
+              let g2c = new graphql2chartjs(data, () => {
                 return {
-                  ...dataPoint,
-                  chartType: "line",
-                  borderColor: "#333538",
-                  pointBackgroundColor: "#333538",
-                  backgroundColor: "#333538",
-                  fill: false
+                  chartType: 'line',
+                  pointBackgroundColor: 'yellow',
+                  borderColor: 'yellow',
+                  borderWidth: 1
                 };
               });
 
-              // () => {this.props.onChangePage};
-
               // render chart with g2c data :)
               return (
-                <Line
-                  data={g2c.data}
-                // options={{
-                //   scales: {
-                //     xAxes: [
-                //       {
-                //         type: "id"
-                //       }
-                //     ]
-                //   },
-                //   animation: {
-                //     duration: 0 // general animation time
-                //   },
-                //   bezierCurve: false
-                // }}
-                />
+                <Line data={g2c.data}/>
               );
             }}
           </Query>
