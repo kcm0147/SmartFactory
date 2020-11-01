@@ -1,24 +1,30 @@
 # Define Data Type
-type Item {
+type Temperature {
    id: Int!
    name: String!
-    temperature : Int!
-    humidity : Int!
+   temperature : String!
+}
+
+type Humidity {
+   id: Int!
+   name: String!
+   humidity : String!
 }
 
 # Define Query
 type Query {
-   items: [Item!]!
-   item(id: Int!): Item
+   temperatures: [Temperature!]!
+   humidities: [Humidity!]!
 }
 
 #Define Mutation
 type Mutation {
-   addItem(id: Int!, name : String!,temperature : Int!,humidity : Int!): Boolean!
-   delItem(id: Int!): Boolean!
+   addTemperature(id: Int!, name : String!,temperature : String!): Boolean!
+   addHumidity(id: Int!, name : String!,humidity : String!): Boolean!
 }
 
 #Define Subscription
 type Subscription {
-   newItem: Item
+   newTemperature: Temperature
+   newHumidity: Humidity
 }

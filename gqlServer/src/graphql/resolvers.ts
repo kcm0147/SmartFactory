@@ -1,26 +1,36 @@
 import { PubSub } from "graphql-yoga";
-import {Item, getById, sampleItems, addItem, delItem} from "./db";
+import { Temperature, Humidity, sampleTemperatures, 
+    sampleHumidities, addTemperature, addHumidity } from "./db";
 
 export const pubsub = new PubSub();
 
 export const resolvers = {
     Query: {
-        items: () => sampleItems,
-        item: (_ : any, obj : Item) => {return getById(obj.id)}
+        temperatures: () => sampleTemperatures,
+        humidities: () => sampleHumidities,
     },
     Mutation: {
-        addItem: (_ : any, newItem : Item) => {
-            pubsub.publish("NEW_ITEM", {
-                newItem
+        addTemperature: (_ : any, newTemperature : Temperature) => {
+            pubsub.publish("NEW_TEMPERATURE", {
+                newTemperature
               })
-            return addItem(newItem)
+            return addTemperature(newTemperature)
         },
-        delItem: (_ : any, obj : Item) => {return delItem(obj.id)}
+        addHumidity: (_ : any, newHumidity : Humidity) => {
+            pubsub.publish("NEW_HUMIDITY", {
+                newHumidity
+              })
+            return addHumidity(newHumidity)
+        }
     },
     Subscription: {
-        newItem: {
+        newTemperature: {
             subscribe: (_:any, __:any) => 
-            pubsub.asyncIterator("NEW_ITEM")
+            pubsub.asyncIterator("NEW_TEMPERATURE")
+        },
+        newHumidity: {
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_HUMIDITY")
         }
     }
 }

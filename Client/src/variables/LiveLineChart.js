@@ -9,14 +9,14 @@ class LineChart extends React.Component {
   constructor(props) {
     super(props);
     this.querystr = gql`query {
-      items {
+      temperatures {
         label: id
         data: temperature
       }
     }`
     this.subscribestr = `
     subscription {
-      newItem{
+      newTemperature{
         label: id
         data: temperature
       }

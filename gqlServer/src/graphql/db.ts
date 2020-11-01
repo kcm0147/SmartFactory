@@ -1,32 +1,24 @@
-export type Item = {
+export type Temperature = {
     id : number,
     name : string,
-    temperature : number,
-    humidity : number
+    temperature : string
+}
+export type Humidity = {
+    id : number,
+    name : string,
+    humidity : string
 }
 
-export let sampleItems : Item[] = [
-]
+export let sampleTemperatures : Temperature[] = []
+export let sampleHumidities : Humidity[] = []
 
-export const getById = (id : number) => {
-    const filteredPeople = sampleItems.filter(i => i.id === id);
-    return sampleItems[0];
-}
-
-export function addItem (obj : Item){
-    if(obj.name === undefined){
-            return false;
-        }
-        
-    // obj.id = Math.floor(Math.random() * 100000);
-
-    sampleItems.push(obj);
+export function addTemperature (obj : Temperature){
+    if(obj.name === undefined)  return false;
+    sampleTemperatures.push(obj);
     return true;
 }
-
-export function delItem (id : number){
-    const filteredPeople = sampleItems.filter(i => i.id === id);
-    
-    filteredPeople.map(e => (sampleItems.splice(sampleItems.indexOf(e), 1)));
+export function addHumidity (obj : Humidity){
+    if(obj.name === undefined)  return false;
+    sampleHumidities.push(obj);
     return true;
 }
