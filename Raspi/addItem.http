@@ -1,0 +1,15 @@
+POST http://localhost:4000
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation itemData($id : Int!,$name : String!, $temperature : Int!, $humidity : Int!){
+  addItem(id : $id, name : $name, temperature : $temperature, humidity : $humidity) 
+}
+
+{
+    "id" : 5,
+    "name" : "temper",
+    "temperature" : 22,
+    "humidity" : 50
+}
+
