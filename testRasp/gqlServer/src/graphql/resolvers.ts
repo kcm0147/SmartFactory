@@ -1,5 +1,5 @@
 import { PubSub } from "graphql-yoga";
-import {Item, getById, sampleItems, addItem, delItem} from "./db";
+import {Item, getById, sampleItems, addItem} from "./db";
 
 export const pubsub = new PubSub();
 
@@ -15,7 +15,7 @@ export const resolvers = {
               })
             return addItem(newItem)
         },
-        delItem: (_ : any, obj : Item) => {return delItem(obj.id)}
+        //delItem: (_ : any, obj : Item) => {return delItem(obj.id)}
     },
     Subscription: {
         newItem: {

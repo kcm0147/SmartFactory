@@ -1,7 +1,9 @@
 # Define Data Type
 type Item {
 	id: Int!
-	weight: Int!
+	name: String!
+    temperature : Int!
+    humidity : Int!
 }
 
 # Define Query
@@ -12,7 +14,7 @@ type Query {
 
 #Define Mutation
 type Mutation {
-	addItem(id: Int!, weight: Int!): Boolean!
+	addItem(id: Int!, name : String!,temperature : Int!,humidity : Int!): Boolean!
 	delItem(id: Int!): Boolean!
 }
 
