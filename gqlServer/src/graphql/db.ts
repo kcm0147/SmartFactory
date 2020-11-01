@@ -1,13 +1,11 @@
 export type Item = {
     id : number,
-    weight : number
+    name : string,
+    temperature : number,
+    humidity : number
 }
 
 export let sampleItems : Item[] = [
-    {id:1, weight: 0},
-    {id:2, weight: 0},
-    {id:3, weight: 0},
-    {id:4, weight: 0}
 ]
 
 export const getById = (id : number) => {
@@ -16,7 +14,7 @@ export const getById = (id : number) => {
 }
 
 export function addItem (obj : Item){
-    if(obj.weight === undefined){
+    if(obj.name === undefined){
             return false;
         }
         
