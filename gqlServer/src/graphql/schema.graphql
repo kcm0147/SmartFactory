@@ -1,12 +1,12 @@
 # Define Data Type
 type Temperature {
-   id: Int!
+   id: String!
    name: String!
    temperature : String!
 }
 
 type Humidity {
-   id: Int!
+   id: String!
    name: String!
    humidity : String!
 }
@@ -19,8 +19,8 @@ type Query {
 
 #Define Mutation
 type Mutation {
-   addTemperature(id: Int!, name : String!,temperature : String!): Boolean!
-   addHumidity(id: Int!, name : String!,humidity : String!): Boolean!
+   addTemperature(id: String!, name : String!,temperature : String!): Boolean!
+   addHumidity(id: String!, name : String!,humidity : String!): Boolean!
 }
 
 #Define Subscription

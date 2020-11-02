@@ -1,10 +1,10 @@
 export type Temperature = {
-    id : number,
+    id : string,
     name : string,
     temperature : string
 }
 export type Humidity = {
-    id : number,
+    id : string,
     name : string,
     humidity : string
 }

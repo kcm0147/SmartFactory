@@ -249,7 +249,7 @@ class Dashboard extends React.Component {
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
+                  <div>
                     <HumidityChart/>
                   </div>
                 </CardBody>
