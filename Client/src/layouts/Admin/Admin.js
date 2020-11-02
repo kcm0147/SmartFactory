@@ -102,7 +102,6 @@ class Admin extends React.Component {
               routes={routes}
               bgColor={this.state.backgroundColor}
               logo={{
-                outterLink: "https://www.creative-tim.com/",
                 text: "Smart Factory",
                 imgSrc: logo
               }}

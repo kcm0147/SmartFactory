@@ -37,22 +37,33 @@ class HumidityChart extends React.Component {
               if (loading) return null;
 
               data.humidities.push(newdata.newHumidity);
-              if(data.humidities.length >20) data.humidities.shift();
+              while (data.humidities.length > 20) data.humidities.shift();
 
               // create graphql2chartjs instance
               let g2c = new graphql2chartjs(data, () => {
                 return {
                   chartType: 'line',
-                  pointBackgroundColor: 'yellow',
-                  borderColor: 'yellow',
-                  backgroundColor:"rgba(29,140,248,0.1)",
-                  borderWidth: 1,
+                  pointBackgroundColor: 'green',
+                  borderColor: 'green',
+                  backgroundColor: "rgba(29,140,248,0.1)",
+                  pointHoverBackgroundColor: 'red',
+                  borderWidth: 1
                 };
               });
 
               // render chart with g2c data :)
               return (
-                <Line data={g2c.data}/>
+                <Line data={g2c.data}
+                  options={{
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          suggestedMin: 0,
+                          suggestedMax: 100
+                        }
+                      }]
+                    }
+                  }} />
               );
             }}
           </Query>

@@ -7,7 +7,7 @@ import 'cross-fetch/polyfill';
 
 const Readline = SerialPort.parsers.Readline;
 
-const port = new SerialPort('COM6', {
+const port = new SerialPort('/dev/cu.usbmodem14101', {
     baudRate: 9600
 });
 
@@ -17,7 +17,7 @@ const parser = port.pipe(new Readline({
 }));
 
 const client = new ApolloClient({
-  uri: "http://220.66.219.69:4000/"
+  uri: "http://localhost:4000/"
 });
 
 // async function getItems(client : ApolloClient<unknown>){

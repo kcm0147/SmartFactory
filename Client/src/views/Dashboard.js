@@ -17,14 +17,14 @@
 */
 import React from "react";
 // nodejs library that concatenates classes
-import classNames from "classnames";
+// import classNames from "classnames";
 // react plugin used to create charts
 import { Bar } from "react-chartjs-2";
 
 // reactstrap components
 import {
-  Button,
-  ButtonGroup,
+  // Button,
+  // ButtonGroup,
   Card,
   CardHeader,
   CardBody,
@@ -76,10 +76,10 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">공정라인 1</h5>
+                      <h5>공정라인 1</h5>
                       <CardTitle tag="h2">온도 측정</CardTitle>
                     </Col>
-                    <Col sm="6">
+                    {/* <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
@@ -152,7 +152,7 @@ class Dashboard extends React.Component {
                           </span>
                         </Button>
                       </ButtonGroup>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>
@@ -169,10 +169,10 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">공정라인 1</h5>
+                      <h5>공정라인 1</h5>
                       <CardTitle tag="h2">습도 측정</CardTitle>
                     </Col>
-                    <Col sm="6">
+                    {/* <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
@@ -245,7 +245,7 @@ class Dashboard extends React.Component {
                           </span>
                         </Button>
                       </ButtonGroup>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>

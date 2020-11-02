@@ -37,7 +37,7 @@ class TemperatureChart extends React.Component {
               if (loading) return null;
 
               data.temperatures.push(newdata.newTemperature);
-              if(data.temperatures.length >20) data.temperatures.shift();
+              while(data.temperatures.length >20) data.temperatures.shift();
 
               // create graphql2chartjs instance
               let g2c = new graphql2chartjs(data, () => {
@@ -46,13 +46,24 @@ class TemperatureChart extends React.Component {
                   pointBackgroundColor: 'yellow',
                   borderColor: 'yellow',
                   backgroundColor:"rgba(29,140,248,0.1)",
-                  borderWidth: 1,
+                  pointHoverBackgroundColor: 'red',
+                  borderWidth: 1
                 };
               });
 
               // render chart with g2c data :)
               return (
-                <Line data={g2c.data}/>
+                <Line data={g2c.data}
+                options={{
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        suggestedMin: 15,
+                        suggestedMax: 30
+                      }
+                    }]
+                  }
+                }}/>
               );
             }}
           </Query>
