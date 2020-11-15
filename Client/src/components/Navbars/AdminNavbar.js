@@ -18,7 +18,7 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-
+import axios from 'axios';
 // reactstrap components
 import {
   Button,
@@ -84,6 +84,30 @@ class AdminNavbar extends React.Component {
     this.setState({
       modalSearch: !this.state.modalSearch
     });
+  };
+  onClickHandler = () => {
+    console.log("HIIII");
+    axios.get('http://localhost:3000/api/users/logout', {withCredentials: true})
+    .then(response => {
+      console.log(response.data);
+      if(response.data.success){
+        alert('Logout Succeeded');
+        //render() { return <Redirect to={'/login'}/>}
+        //this.history.push('/login');
+      } else{
+        alert('Logout Failed');
+      }
+    })
+//    axios.get('api/users/logout')
+    // axios.get('api/users/logout', {withCredentials: true})
+    //     .then(response => {
+    //         if(response.data.success){
+    //             this.history.push('/login'); //props.history.push('/login');
+    //         } else {
+    //             alert('로그아웃 실패');
+    //         }
+    //         console.log(response.data);
+    //     })
   };
   render() {
     return (
@@ -203,7 +227,7 @@ class AdminNavbar extends React.Component {
                     </NavLink>
                     <DropdownItem divider tag="li" />
                     <NavLink tag="li">
-                      <DropdownItem className="nav-item">Log out</DropdownItem>
+                      <DropdownItem className="nav-item" onClick={this.onClickHandler}>Log out</DropdownItem>
                     </NavLink>
                   </DropdownMenu>
                 </UncontrolledDropdown>

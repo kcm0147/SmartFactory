@@ -8,7 +8,7 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
-import Login from "loginviews/Login.js";
+import LoginPage from "components/views/LoginPage/Loginform.js";
 
 import routes from "routes.js";
 
@@ -62,6 +62,7 @@ class Admin extends React.Component {
     document.documentElement.classList.toggle("nav-open");
     this.setState({ sidebarOpened: !this.state.sidebarOpened });
   };
+  ////////////////////// layout == "/admin"
   getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -137,7 +138,7 @@ class Admin extends React.Component {
     }
     else{
       return(
-        <Login/>
+        <LoginPage/>
       )
     }
   }

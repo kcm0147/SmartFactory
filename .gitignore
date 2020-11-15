@@ -5,3 +5,5 @@ Raspi/node_modules
 /build
 testRasp/gqlServer/node_modules
 testRasp/raspi/node_modules
+loginServer/config/dev.js
+loginServer/node_modules
