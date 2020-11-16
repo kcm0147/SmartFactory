@@ -66,7 +66,7 @@ async function addHumidity(client : ApolloClient<unknown>, obj : Humidity){
 //   console.log(result.data.result)
 // }
 
-async function serialOpen()
+async function serialOpen(lineNum : String)
 {
     port.open(function (msg) {
         if (msg) {
@@ -79,34 +79,36 @@ async function serialOpen()
     parser.on('data', (data : string)=>{
         data = data.substring(0, data.length-2);
         console.log(data)
-        let chunk = data.split(',')
+        let chunk = data.split(',') // chunk[0] is sensor name
         // console.log(chunk)
-        let list : string[] = [];
-
-        // temperature 인지 humidity 인지 분리할 수 있는 무언가를 만들어야함
-        let temperature : Temperature = {
-          id : "0",
-          name : "Temperature",
-          temperature : chunk[0]
+       
+        if(chunk[0].localeCompare("TandHsensor")){
+          let temperature : Temperature = {
+            id : lineNum,
+            device : chunk[0],
+            name : "Temperature",
+            temperature : chunk[1]
+          }
+          addTemperature(client,temperature);
+          console.log("Temperature : " + temperature)
+  
+          let humidity : Humidity = {
+            id : lineNum,
+            device : chunk[0],
+            name : "Humidity",
+            humidity : chunk[2]
+          }
+          addHumidity(client,humidity);
+          console.log("Humidity : " + humidity)
         }
-        addTemperature(client,temperature);
-        console.log("Temperature : " + temperature)
 
-        let humidity : Humidity = {
-          id : "1",
-          name : "Humidity",
-          humidity : chunk[1]
-        }
-        addHumidity(client,humidity);
-        console.log("Humidity : " + humidity)
-
-
-        
+    
     });
 
   }
 
 
     ( function main(){
-      serialOpen();
+      let Linenumber : String="1"; // set Line number
+      serialOpen(Linenumber);
     })();
