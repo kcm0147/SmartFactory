@@ -18,21 +18,20 @@
 import React from "react";
 
 // reactstrap components
-// import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 
-class Icons extends React.Component {
+class Registration extends React.Component {
   render() {
     return (
       <div className="content">
-        <h2> Setting Section </h2>
-        {/* <Row>
+        <h2> Registration Section </h2>
+        <Row>
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <h5 className="title">100 Awesome Nucleo Icons</h5>
+                  <h4 className="title">현재 신청 대기 센서 항목</h4>
                   <p className="category">
-                    Handcrafted by our friends from{" "}
-                    <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
+                    신청 대기 항목을 등록해 센싱 정보를 실시간으로 모니터링 해보십시오.
                   </p>
                 </CardHeader>
                 <CardBody className="all-icons">
@@ -43,10 +42,11 @@ class Icons extends React.Component {
                       md="3"
                       sm="4"
                     >
-                      <div className="font-icon-detail">
+                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
                         <i className="tim-icons icon-alert-circle-exc" />
-                        <p>icon-alert-circle-exc</p>
-                      </div>
+                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 1</p>
+                        <p style={{fontSize:14}}>Temperature</p>
+                      </button>
                     </Col>
                     <Col
                       className="font-icon-list col-xs-6 col-xs-6"
@@ -54,12 +54,13 @@ class Icons extends React.Component {
                       md="3"
                       sm="4"
                     >
-                      <div className="font-icon-detail">
-                        <i className="tim-icons icon-align-center" />
-                        <p>icon-align-center</p>
-                      </div>
+                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
+                        <i className="tim-icons icon-alert-circle-exc" />
+                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 3</p>
+                        <p style={{fontSize:14}}>Humidity</p>
+                      </button>
                     </Col>
-                    <Col
+                    {/* <Col
                       className="font-icon-list col-xs-6 col-xs-6"
                       lg="2"
                       md="3"
@@ -69,8 +70,8 @@ class Icons extends React.Component {
                         <i className="tim-icons icon-align-left-2" />
                         <p>icon-align-left-2</p>
                       </div>
-                    </Col>
-                    <Col
+                    </Col> */}
+                    {/* <Col
                       className="font-icon-list col-xs-6 col-xs-6"
                       lg="2"
                       md="3"
@@ -1136,15 +1137,15 @@ class Icons extends React.Component {
                         <i className="tim-icons icon-simple-delete" />
                         <p>icon-simple-delete</p>
                       </div>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardBody>
               </Card>
             </Col>
-          </Row> */}
+          </Row>
       </div>
     );
   }
 }
 
-export default Icons;
+export default Registration;
