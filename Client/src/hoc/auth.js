@@ -21,12 +21,12 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     }
                 } else {
                     //로그인 한 상태 
-                    alert("불가능한 접근입니다.");
+                    console.log("불가능한 접근입니다.");
                     if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/admin/dashboard')
+                        props.history.push('/')
                     } else {
                         if (option === false)
-                            props.history.push('/admin/dashboard')
+                            props.history.push('/')
                     }
                 }
             })

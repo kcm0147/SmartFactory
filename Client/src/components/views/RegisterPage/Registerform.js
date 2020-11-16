@@ -82,7 +82,7 @@ function Registerform(props) {
                                         <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} required />
                                         <label for="inputConfirmPassword">Confirm Password</label>
                                     </div>
-                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Un</button>
                                     {/* <hr class="my-4">
                     <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
                     <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>

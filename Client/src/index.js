@@ -18,16 +18,14 @@ import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import Reducer from './_reducers';
 import * as serviceWorker from './serviceWorker';
+import LandingPage from './components/views/LandingPage/LandingPage'
 import LoginPage from './components/views/LoginPage/Loginform';
-import RegisterPage from './components/views/RegisterPage/Registerform';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import Auth from './hoc/auth'
 
 const hist = createBrowserHistory();
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
 
-/*  추가해야할 사항
-1. 로그아웃 시 /login 경로로 리다이렉트 시키기
-*/
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(Reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -40,8 +38,7 @@ ReactDOM.render(
             <Route path="/admin" render={props => <AdminLayout {...props} />} />
             <Route exact path="/login" component={Auth(LoginPage, false) } />
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
-            {/*<Redirect from="/" to="/admin/dashboard" /> */}
-            {/*/admin/dashboard */}
+            <Redirect from="/" to="/admin/dashboard" /> {/*/admin/dashboard */}
           </Switch>
         </Router>
       </ApolloHooksProvider>
