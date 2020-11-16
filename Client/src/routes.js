@@ -49,14 +49,14 @@ var routes = [
     component: Map,
     layout: "/admin"
   },
-  {
-    path: "/notifications",
-    name: "Log-out",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Notifications,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/notifications",
+  //   name: "Log-out",
+  //   rtlName: "إخطارات",
+  //   icon: "tim-icons icon-bell-55",
+  //   component: Notifications,
+  //   layout: "/admin"
+  // },
   {
     path: "/user-profile",
     name: "User Profile",
