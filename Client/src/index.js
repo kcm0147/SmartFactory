@@ -17,10 +17,8 @@ import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import Reducer from './_reducers';
-import * as serviceWorker from './serviceWorker';
-import LandingPage from './components/views/LandingPage/LandingPage'
 import LoginPage from './components/views/LoginPage/Loginform';
-import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import Registerform from './components/views/RegisterPage/Registerform';
 import Auth from './hoc/auth'
 
 const hist = createBrowserHistory();
@@ -37,7 +35,7 @@ ReactDOM.render(
           <Switch>
             <Route path="/admin" render={props => <AdminLayout {...props} />} />
             <Route exact path="/login" component={Auth(LoginPage, false) } />
-            <Route exact path="/register" component={Auth(RegisterPage, false)} />
+            <Route exact path="/register" component={Auth(Registerform, false)} />
             <Redirect from="/" to="/admin/dashboard" /> {/*/admin/dashboard */}
           </Switch>
         </Router>
