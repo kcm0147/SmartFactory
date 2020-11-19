@@ -11,8 +11,8 @@
 */
 import Dashboard from "views/Dashboard.js";
 import Registration from "views/Registration.js";
-import Map from "views/Map.js";
-import Notifications from "views/Notifications.js";
+import Setting from "views/Setting.js";
+// import Notifications from "views/Notifications.js";
 // import Rtl from "views/Rtl.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
@@ -36,11 +36,11 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/map",
+    path: "/setting",
     name: "Setting",
     rtlName: "خرائط",
     icon: "tim-icons icon-pin",
-    component: Map,
+    component: Setting,
     layout: "/admin"
   },
   // {
