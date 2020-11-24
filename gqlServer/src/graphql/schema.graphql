@@ -11,20 +11,29 @@ type Humidity {
    humidity : String!
 }
 
+type Weight {
+   id: String!
+   name: String!
+   weight : String!
+}
+
 # Define Query
 type Query {
    temperatures: [Temperature!]!
    humidities: [Humidity!]!
+   weights: [Weight!]!
 }
 
 #Define Mutation
 type Mutation {
    addTemperature(id: String!, name : String!,temperature : String!): Boolean!
    addHumidity(id: String!, name : String!,humidity : String!): Boolean!
+   addWeight(id: String!, name : String!,weight : String!): Boolean!
 }
 
 #Define Subscription
 type Subscription {
    newTemperature: Temperature
    newHumidity: Humidity
+   newWeight: Weight
 }
