@@ -16,269 +16,72 @@
 
 */
 import React from "react";
-// nodejs library that concatenates classes
-// import classNames from "classnames";
-// react plugin used to create charts
-import { Bar } from "react-chartjs-2";
+import { Route, Switch, Link } from 'react-router-dom';
+import Processline from "./Processline"
 
 // reactstrap components
-import {
-  // Button,
-  // ButtonGroup,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  //DropdownToggle,
-  //DropdownMenu,
-  //DropdownItem,
-  //UncontrolledDropdown,
-  //Label,
-  //FormGroup,
-  //Input,
-  //Table,
-  Row,
-  Col,
-  //UncontrolledTooltip
-} from "reactstrap";
-
-// core components
-import {
-  // chartExample1,
-  // chartExample2,
-  chartExample3,
-  // chartExample4
-} from "variables/charts.js";
-
-import TemperatureChart from "variables/TemperatureChart.js"
-import HumidityChart from "variables/HumidityChart.js"
+import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bigChartData: "data1"
-    };
-  }
-
-  setBgChartData = name => {
-    this.setState({
-      bigChartData: name
-    });
-  };
-  render() { // Dashboard row 시작되는 위치
+  render() {
     return (
-      <>
-        <div className="content">
-          <Row>
-          <Col xs="12">
+      <div className="content">
+        <Switch>
+          <Route path="/admin/dashboard/processline" component={Processline} />
+        </Switch>
+        <h2> Dashboard </h2>
+        <Row>
+            <Col md="12">
               <Card>
                 <CardHeader>
+                  <h4 className="title">공정라인 리스트</h4>
+                  <p className="category">
+                    모니터링할 공정라인을 선택하세요.
+                  </p>
+                </CardHeader>
+                <CardBody className="all-icons">
                   <Row>
-                    <Col className="text-left" sm="6">
-                      <h5>공정라인 1</h5>
-                      <CardTitle tag="h2">온도 측정</CardTitle>
+                    <Col
+                      className="font-icon-list col-xs-6 col-xs-6"
+                      lg="4"
+                      md="3"
+                      sm="4"
+                    >
+                      <Link to="/admin/dashboard/processline">
+                        <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
+                          <i className="tim-icons icon-alert-circle-exc" />
+                          <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 1</p>
+                        </button>
+                      </Link>
                     </Col>
-                    {/* <Col sm="6">
-                      <ButtonGroup
-                        className="btn-group-toggle float-right"
-                        data-toggle="buttons"
-                      >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온-습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
-                      </ButtonGroup>
-                    </Col> */}
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <TemperatureChart/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                      <h5>공정라인 1</h5>
-                      <CardTitle tag="h2">습도 측정</CardTitle>
+                    <Col
+                      className="font-icon-list col-xs-6 col-xs-6"
+                      lg="4"
+                      md="3"
+                      sm="4"
+                    >
+                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
+                        <i className="tim-icons icon-alert-circle-exc" />
+                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 2</p>
+                      </button>
                     </Col>
-                    {/* <Col sm="6">
-                      <ButtonGroup
-                        className="btn-group-toggle float-right"
-                        data-toggle="buttons"
-                      >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온-습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
-                      </ButtonGroup>
-                    </Col> */}
+                    <Col
+                      className="font-icon-list col-xs-6 col-xs-6"
+                      lg="4"
+                      md="3"
+                      sm="4"
+                    >
+                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
+                        <i className="tim-icons icon-alert-circle-exc" />
+                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 3</p>
+                      </button>
+                    </Col>
                   </Row>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <HumidityChart/>
-                  </div>
                 </CardBody>
               </Card>
             </Col>
           </Row>
-          <Row>
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">공정라인 1</h5>
-                  <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-primary" />{" "}
-                    무게 측정
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Bar
-                      data={chartExample3.data}
-                      options={chartExample3.options}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </>
+      </div>
     );
   }
 }

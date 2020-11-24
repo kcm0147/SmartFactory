@@ -8,7 +8,16 @@ export type Humidity = {
     name : string,
     humidity : string
 }
+export type Devicelist = {
+    line : string,
+    device : string
+}
 
+export let devicelist : Devicelist[] = [
+    {line:"1", device:"temperature"},
+    {line:"1", device:"humidity"},
+    {line:"2", device:"humidity"}
+]
 export let sampleTemperatures : Temperature[] = []
 export let sampleHumidities : Humidity[] = []
 
