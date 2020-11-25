@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import './deviceregister.css'
 
-var device_name_list = []
-var device_id_list = []
-var measured_value_type_list = []
-var graph_location_list = []
+const data = [];
 class deviceregister extends Component {
 	constructor(props) {
 		super(props)
@@ -43,11 +40,8 @@ class deviceregister extends Component {
 	}
 
 	handleSubmit = event => {
-		device_name_list.push(`${this.state.device_name}`)
-		device_id_list.push(`${this.state.device_id}`)
-		graph_location_list.push(`${this.state.graph_location}`)
-		measured_value_type_list.push(`${this.state.measured_value_type}`)
-		alert(`"device name:" ${this.state.device_name} "\ndevice id:" ${this.state.device_id} "\nmeasured value type:" ${this.state.measured_value_type} "\ngraph location:" ${this.graph_location}`)
+		data.push(JSON.stringify(this.state));
+		alert(`device name: ${this.state.device_name} \ndevice id: ${this.state.device_id} \nmeasured value type: ${this.state.measured_value_type} \ngraph location: ${this.graph_location}`)
 		event.preventDefault()
 	}
 
