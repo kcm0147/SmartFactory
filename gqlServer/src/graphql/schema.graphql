@@ -10,11 +10,14 @@ type Humidity {
    name: String!
    humidity : String!
 }
-
 type Weight {
    id: String!
    name: String!
    weight : String!
+}
+type Devicelist = {
+    line : String!,
+    device : String!
 }
 
 # Define Query
@@ -22,6 +25,7 @@ type Query {
    temperatures: [Temperature!]!
    humidities: [Humidity!]!
    weights: [Weight!]!
+   devicelist: [Devicelist!]!
 }
 
 #Define Mutation

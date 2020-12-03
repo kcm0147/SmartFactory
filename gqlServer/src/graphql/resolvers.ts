@@ -1,6 +1,6 @@
 import { PubSub } from "graphql-yoga";
 import { Temperature, Humidity, Weight, sampleTemperatures, 
-    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight } from "./db";
+    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight, sampleDevicelist } from "./db";
 
 export const pubsub = new PubSub();
 
@@ -9,6 +9,7 @@ export const resolvers = {
         temperatures: () => sampleTemperatures,
         humidities: () => sampleHumidities,
         weights: () => sampleWeights,
+        devicelist: () => sampleDevicelist
     },
     Mutation: {
         addTemperature: (_ : any, newTemperature : Temperature) => {
