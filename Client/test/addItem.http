@@ -2,12 +2,17 @@ POST http://localhost:4000
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
-mutation itemData($id : String!, $name : String!, $humidity: String!){
-  addHumidity(id : $id, name : $name, humidity:$humidity) 
-}
+mutation itemData($id : Number!, $device : String!,$name : String!, $humidity: String!){
+  addHumidity(id : $id, device : $device,name : $name, humidity:$humidity) 
+} 
 
 {
-    "id" : "6",
+    "id" : 3,
+    "device" : "temperature",
     "name" : "temp",
-    "humidity" : "22"
+    "humidity" : "27"
 }
+
+
+
+// mutation 형식도 바꿔주기..

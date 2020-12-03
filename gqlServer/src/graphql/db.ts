@@ -8,9 +8,15 @@ export type Humidity = {
     name : string,
     humidity : string
 }
+export type Weight = {
+    id : string,
+    name : string,
+    weight : string
+}
 
 export let sampleTemperatures : Temperature[] = []
 export let sampleHumidities : Humidity[] = []
+export let sampleWeights : Weight[] = []
 
 export function addTemperature (obj : Temperature){
     if(obj.name === undefined)  return false;
@@ -20,5 +26,10 @@ export function addTemperature (obj : Temperature){
 export function addHumidity (obj : Humidity){
     if(obj.name === undefined)  return false;
     sampleHumidities.push(obj);
+    return true;
+}
+export function addWeight (obj : Weight){
+    if(obj.name === undefined)  return false;
+    sampleWeights.push(obj);
     return true;
 }

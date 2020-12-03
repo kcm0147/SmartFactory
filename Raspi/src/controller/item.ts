@@ -1,13 +1,13 @@
 import { gql } from "apollo-boost";
 
 export interface Temperature {
-  id : String,
+  id : string,
   device : string,
   name : string,
   temperature : string
 }
 export interface Humidity{
-  id : String,
+  id : string,
   device : string,
   name : string,
   humidity : string
@@ -34,7 +34,7 @@ export interface Humidity{
 // `;
 
 export const ADD_TEMPERATURE = gql`
-mutation ($id : String!, device : String!,$name : String!, $temperature : String!){
+mutation ($id : String!, $device : String!,$name : String!, $temperature : String!){
   result : addTemperature(id:$id,device : $device,name : $name, temperature : $temperature) 
 }
 `;
