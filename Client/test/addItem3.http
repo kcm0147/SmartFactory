@@ -1,0 +1,13 @@
+POST http://localhost:4000
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation itemData($id : String!, $name : String!, $weight: String!){
+  addWeight(id : $id, name : $name, weight:$weight) 
+}
+
+{
+    "id" : "6",
+    "name" : "temp",
+    "weight" : "20"
+}

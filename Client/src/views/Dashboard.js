@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates classes
 // import classNames from "classnames";
@@ -42,6 +25,9 @@ import {
   //UncontrolledTooltip
 } from "reactstrap";
 
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 // core components
 import {
   // chartExample1,
@@ -50,8 +36,13 @@ import {
   // chartExample4
 } from "variables/charts.js";
 
-import TemperatureChart from "variables/TemperatureChart.js"
-import HumidityChart from "variables/HumidityChart.js"
+import TemperatureChart1 from "line1/chart/TemperatureChart1.js"
+import HumidityChart1 from "line1/chart/HumidityChart1.js"
+import TemperatureChart2 from "line2/chart/TemperatureChart2.js"
+import HumidityChart2 from "line2/chart/HumidityChart2.js"
+import TemperatureChart3 from "line3/chart/TemperatureChart3.js"
+import HumidityChart3 from "line3/chart/HumidityChart3.js"
+import WeightChart3 from "line3/chart/WeightChart3.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -59,6 +50,11 @@ class Dashboard extends React.Component {
     this.state = {
       bigChartData: "data1"
     };
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
   }
 
   setBgChartData = name => {
@@ -69,215 +65,148 @@ class Dashboard extends React.Component {
   render() { // Dashboard row 시작되는 위치
     return (
       <>
-        <div className="content">
+      <Query query={gql`${this.querystr}`}>
+            {({ data, loading }) => {
+              if (loading) return null;
+
+              console.log(data);
+
+              // render chart with g2c data :)
+              return (
+                <div className="content">
           <Row>
-          <Col xs="12">
+          <Col xs="6">
               <Card>
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5>공정라인 1</h5>
-                      <CardTitle tag="h2">온도 측정</CardTitle>
+                    <h5 className="card-category">Process Line 1</h5>
+                      <CardTitle tag="h3">
+                        Temperature
+                      </CardTitle>
                     </Col>
-                    {/* <Col sm="6">
-                      <ButtonGroup
-                        className="btn-group-toggle float-right"
-                        data-toggle="buttons"
-                      >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온-습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
-                      </ButtonGroup>
-                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <TemperatureChart/>
+                    <TemperatureChart1/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6">
+              <Card>
+                <CardHeader>
+                  <Row>
+                    <Col className="text-left" sm="6">
+                    <h5 className="card-category">Process Line 1</h5>
+                      <CardTitle tag="h3">
+                        Humidity
+                      </CardTitle>
+                    </Col>
+                  </Row>
+                </CardHeader>
+                <CardBody>
+                  <div className="chart-area">
+                    <HumidityChart1/>
                   </div>
                 </CardBody>
               </Card>
             </Col>
           </Row>
           <Row>
-            <Col xs="12">
+            <Col xs="6">
               <Card className="card-chart">
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5>공정라인 1</h5>
-                      <CardTitle tag="h2">습도 측정</CardTitle>
+                    <h5 className="card-category">Process Line 2</h5>
+                      <CardTitle tag="h3">
+                        Temperature
+                      </CardTitle>
                     </Col>
-                    {/* <Col sm="6">
-                      <ButtonGroup
-                        className="btn-group-toggle float-right"
-                        data-toggle="buttons"
-                      >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
-                        >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온-습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            온도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            습도
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
-                      </ButtonGroup>
-                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div>
-                    <HumidityChart/>
+                    <TemperatureChart2/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6">
+              <Card className="card-chart">
+                <CardHeader>
+                  <Row>
+                    <Col className="text-left" sm="6">
+                    <h5 className="card-category"> Process Line 2</h5>
+                      <CardTitle tag="h3">
+                        Humidity
+                      </CardTitle>
+                    </Col>
+                  </Row>
+                </CardHeader>
+                <CardBody>
+                  <div>
+                    <HumidityChart2/>
                   </div>
                 </CardBody>
               </Card>
             </Col>
           </Row>
           <Row>
-            <Col xs="12">
+            <Col xs="6">
               <Card className="card-chart">
                 <CardHeader>
-                  <h5 className="card-category">공정라인 1</h5>
+                  <h5 className="card-category">Process Line 3</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-primary" />{" "}
-                    무게 측정
+                    Temperature
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Bar
-                      data={chartExample3.data}
-                      options={chartExample3.options}
-                    />
+                  <div>
+                    <TemperatureChart3/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6">
+              <Card className="card-chart">
+                <CardHeader>
+                  <h5 className="card-category">Process Line 3</h5>
+                  <CardTitle tag="h3">
+                    Humidity
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <div>
+                    <HumidityChart3/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+          <Col xs="6">
+              <Card className="card-chart">
+                <CardHeader>
+                  <h5 className="card-category">Process Line 3</h5>
+                  <CardTitle tag="h3">
+                    Weight
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <div>
+                    <WeightChart3/>
                   </div>
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </div>
+              );
+            }}
+          </Query>
       </>
     );
   }

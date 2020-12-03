@@ -10,6 +10,15 @@ type Humidity {
    name: String!
    humidity : String!
 }
+type Weight {
+   id: String!
+   name: String!
+   weight : String!
+}
+type Devicelist {
+   line: String!
+   device: String!
+}
 
 type Weight{
    id: String!
@@ -21,19 +30,20 @@ type Weight{
 type Query {
    temperatures: [Temperature!]!
    humidities: [Humidity!]!
-   weight: [Weight]!
+   weights: [Weight!]!
+   devicelist: [Devicelist!]!
 }
 
 #Define Mutation
 type Mutation {
-   addTemperature(id: String!,name : String!,temperature : String!): Boolean!
-   addHumidity(id: String!,name : String!,humidity : String!): Boolean!
-   addWeight(id: String!,name : String!,weight : String!): Boolean!
+   addTemperature(id: String!, name : String!,temperature : String!): Boolean!
+   addHumidity(id: String!, name : String!,humidity : String!): Boolean!
+   addWeight(id: String!, name : String!,weight : String!): Boolean!
 }
 
 #Define Subscription
 type Subscription {
    newTemperature: Temperature
    newHumidity: Humidity
-   newWeight : Weight
+   newWeight: Weight
 }

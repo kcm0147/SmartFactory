@@ -1,6 +1,7 @@
 import { PubSub } from "graphql-yoga";
-import { Temperature, Humidity, Weight,sampleTemperatures, 
-    sampleHumidities, sampleWeights, addTemperature, addHumidity,addWeight } from "./db";
+import { Temperature, Humidity, Weight, sampleDevicelist, sampleTemperatures, 
+    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight } from "./db";
+
 
 export const pubsub = new PubSub();
 
@@ -9,6 +10,7 @@ export const resolvers = {
         temperatures: () => sampleTemperatures,
         humidities: () => sampleHumidities,
         weights: () => sampleWeights,
+        devicelist: () => sampleDevicelist
     },
     Mutation: {
         addTemperature: (_ : any, newTemperature : Temperature) => {
@@ -23,10 +25,10 @@ export const resolvers = {
               })
             return addHumidity(newHumidity)
         },
-        addWeight: (_:any, newWeight : Weight)=>{
+        addWeight: (_ : any, newWeight : Weight) => {
             pubsub.publish("NEW_WEIGHT", {
                 newWeight
-            })
+              })
             return addWeight(newWeight)
         }
     },
@@ -40,7 +42,7 @@ export const resolvers = {
             pubsub.asyncIterator("NEW_HUMIDITY")
         },
         newWeight: {
-            subscribe: (_:any, __:any) =>
+            subscribe: (_:any, __:any) => 
             pubsub.asyncIterator("NEW_WEIGHT")
         }
     }

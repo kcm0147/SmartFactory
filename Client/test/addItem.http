@@ -10,9 +10,5 @@ mutation itemData($id : Number!, $device : String!,$name : String!, $humidity: S
     "id" : 3,
     "device" : "temperature",
     "name" : "temp",
-    "humidity" : "27"
+    "humidity" : "40"
 }
-
-
-
-// mutation 형식도 바꿔주기..

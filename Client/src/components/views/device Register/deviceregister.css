@@ -1,0 +1,61 @@
+
+body {
+    background: ghostwhite;
+    background-size: cover;
+  }
+  
+  
+  .wide-screen-label-cell {
+    display: none;
+    text-align: center;
+  }
+  
+  .blackbox-form {
+    background-color: ghostwhite;
+    color: black;
+    font-size: 16px;
+    line-break: normal;
+    font-style: italics;
+    widows: 10px;
+  }
+  
+  input[type=text]:focus {
+    background-color: lightblue;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }
+  
+  .rounded-input {
+    padding:10px;
+    border-radius:10px;
+    width:30%;
+  }
+  
+  button {
+
+    appearance:none;
+    -webkit-appearance:none;
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:30%;
+    align-items: center;
+  
+  }
+  
+  select {
+    width: 30%;
+    padding:10px;
+    border-radius:10px;
+    
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .wide-screen-label-cell {
+      display: block;
+    }
+  }
+  
+  

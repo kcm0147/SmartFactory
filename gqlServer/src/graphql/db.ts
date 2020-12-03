@@ -13,7 +13,17 @@ export type Weight = {
     name : string,
     weight : string
 }
+export type Devicelist = {
+    line : string,
+    device : string
+}
 
+
+export let sampleDevicelist : Devicelist[] = [
+    {line:"1", device:"temperature"},
+    {line:"1", device:"humidity"},
+    {line:"2", device:"humidity"}
+]
 export let sampleTemperatures : Temperature[] = []
 export let sampleHumidities : Humidity[] = []
 export let sampleWeights : Weight[] = []
