@@ -17,7 +17,7 @@ const parser = port.pipe(new Readline({
 }));
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/"
+  uri: "http://192.168.43.175:4000/"
 });
 
 // async function getItems(client : ApolloClient<unknown>){
@@ -82,23 +82,22 @@ async function serialOpen(lineNum : string)
         let chunk = data.split(',') // chunk[0] is sensor name
         console.log(chunk)
        
-        if(chunk[0].localeCompare("TandHsensor")){
+        
+        if(!chunk[0].localeCompare("TandHSensor")){
           let temperature : Temperature = {
             id : lineNum,
-            device : chunk[0],
             name : "Temperature",
             temperature : chunk[1]
           }
-         // addTemperature(client,temperature);
+         addTemperature(client,temperature);
           console.log("Temperature : " + temperature)
   
           let humidity : Humidity = {
             id : lineNum,
-            device : chunk[0],
             name : "Humidity",
             humidity : chunk[2]
           }
-        //  addHumidity(client,humidity);
+          addHumidity(client,humidity);
           console.log("Humidity : " + humidity)
         }
 
@@ -107,8 +106,7 @@ async function serialOpen(lineNum : string)
 
   }
 
-
     ( function main(){
-      let Linenumber : string="1"; // set Line number
+      let Linenumber : string="2"; // set Line number
       serialOpen(Linenumber);
     })();
