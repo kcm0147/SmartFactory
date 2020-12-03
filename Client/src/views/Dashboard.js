@@ -25,9 +25,6 @@ import {
   //UncontrolledTooltip
 } from "reactstrap";
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-
 // core components
 import {
   // chartExample1,
@@ -50,11 +47,6 @@ class Dashboard extends React.Component {
     this.state = {
       bigChartData: "data1"
     };
-    this.querystr = gql`query {
-      devicelist {
-        line, device
-      }
-    }`
   }
 
   setBgChartData = name => {
@@ -64,16 +56,7 @@ class Dashboard extends React.Component {
   };
   render() { // Dashboard row 시작되는 위치
     return (
-      <>
-      <Query query={gql`${this.querystr}`}>
-            {({ data, loading }) => {
-              if (loading) return null;
-
-              console.log(data);
-
-              // render chart with g2c data :)
-              return (
-                <div className="content">
+        <div className="content">
           <Row>
           <Col xs="6">
               <Card>
@@ -204,10 +187,6 @@ class Dashboard extends React.Component {
             </Col>
           </Row>
         </div>
-              );
-            }}
-          </Query>
-      </>
     );
   }
 }
