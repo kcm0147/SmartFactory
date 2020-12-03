@@ -20,6 +20,12 @@ type Devicelist {
    device: String!
 }
 
+type Weight{
+   id: String!
+   name : String!
+   weight : String!
+}
+
 # Define Query
 type Query {
    temperatures: [Temperature!]!
