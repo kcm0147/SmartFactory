@@ -33,9 +33,13 @@ import {
   // chartExample4
 } from "variables/charts.js";
 
-import TemperatureChart from "variables/TemperatureChart.js"
-import HumidityChart from "variables/HumidityChart.js"
-import WeightChart from "variables/WeightChart.js"
+import TemperatureChart1 from "line1/chart/TemperatureChart1.js"
+import HumidityChart1 from "line1/chart/HumidityChart1.js"
+import TemperatureChart2 from "line2/chart/TemperatureChart2.js"
+import HumidityChart2 from "line2/chart/HumidityChart2.js"
+import TemperatureChart3 from "line3/chart/TemperatureChart3.js"
+import HumidityChart3 from "line3/chart/HumidityChart3.js"
+import WeightChart3 from "line3/chart/WeightChart3.js"
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -62,7 +66,6 @@ class Dashboard extends React.Component {
                     <Col className="text-left" sm="6">
                     <h5 className="card-category">Process Line 1</h5>
                       <CardTitle tag="h3">
-                        <i className="tim-icons icon-single-02" />
                         Temperature
                       </CardTitle>
                     </Col>
@@ -70,7 +73,7 @@ class Dashboard extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <TemperatureChart/>
+                    <TemperatureChart1/>
                   </div>
                 </CardBody>
               </Card>
@@ -82,15 +85,14 @@ class Dashboard extends React.Component {
                     <Col className="text-left" sm="6">
                     <h5 className="card-category">Process Line 1</h5>
                       <CardTitle tag="h3">
-                      <i className="tim-icons icon-single-02" />
-                        Fire detection
+                        Humidity
                       </CardTitle>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div className="chart-area">
-                    <TemperatureChart/>
+                    <HumidityChart1/>
                   </div>
                 </CardBody>
               </Card>
@@ -104,15 +106,14 @@ class Dashboard extends React.Component {
                     <Col className="text-left" sm="6">
                     <h5 className="card-category">Process Line 2</h5>
                       <CardTitle tag="h3">
-                      <i className="tim-icons icon-gift-2" />
-                        CCTV
+                        Temperature
                       </CardTitle>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div>
-                    <HumidityChart/>
+                    <TemperatureChart2/>
                   </div>
                 </CardBody>
               </Card>
@@ -124,15 +125,14 @@ class Dashboard extends React.Component {
                     <Col className="text-left" sm="6">
                     <h5 className="card-category"> Process Line 2</h5>
                       <CardTitle tag="h3">
-                        <i className="tim-icons icon-gift-2" />
-                        Infrared temperature
+                        Humidity
                       </CardTitle>
                     </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
                   <div>
-                    <HumidityChart/>
+                    <HumidityChart2/>
                   </div>
                 </CardBody>
               </Card>
@@ -144,20 +144,13 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <h5 className="card-category">Process Line 3</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-primary" />{" "}
                     Temperature
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div>
-                    <WeightChart/>
+                    <TemperatureChart3/>
                   </div>
-                  {/* <div className="chart-area">
-                    <Bar
-                      data={chartExample3.data}
-                      options={chartExample3.options}
-                    />
-                  </div> */}
                 </CardBody>
               </Card>
             </Col>
@@ -166,13 +159,29 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <h5 className="card-category">Process Line 3</h5>
                   <CardTitle tag="h3">
-                    <i className="tim-icons icon-delivery-fast text-primary" />{" "}
+                    Humidity
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <div>
+                    <HumidityChart3/>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+          <Col xs="6">
+              <Card className="card-chart">
+                <CardHeader>
+                  <h5 className="card-category">Process Line 3</h5>
+                  <CardTitle tag="h3">
                     Weight
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
                   <div>
-                    <WeightChart/>
+                    <WeightChart3/>
                   </div>
                 </CardBody>
               </Card>
