@@ -18,6 +18,7 @@ export type Devicelist = {
     device : string
 }
 
+
 export let sampleDevicelist : Devicelist[] = [
     {line:"1", device:"temperature"},
     {line:"1", device:"humidity"},

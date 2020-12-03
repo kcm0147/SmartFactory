@@ -7,7 +7,7 @@ import 'cross-fetch/polyfill';
 
 const Readline = SerialPort.parsers.Readline;
 
-const port = new SerialPort('/dev/cu.usbmodem14101', {
+const port = new SerialPort('/dev/cu.usbmodem14201', {
     baudRate: 9600
 });
 
@@ -66,7 +66,7 @@ async function addHumidity(client : ApolloClient<unknown>, obj : Humidity){
 //   console.log(result.data.result)
 // }
 
-async function serialOpen(lineNum : String)
+async function serialOpen(lineNum : string)
 {
     port.open(function (msg) {
         if (msg) {
@@ -80,7 +80,7 @@ async function serialOpen(lineNum : String)
         data = data.substring(0, data.length-2);
         console.log(data)
         let chunk = data.split(',') // chunk[0] is sensor name
-        // console.log(chunk)
+        console.log(chunk)
        
         if(chunk[0].localeCompare("TandHsensor")){
           let temperature : Temperature = {
@@ -89,7 +89,7 @@ async function serialOpen(lineNum : String)
             name : "Temperature",
             temperature : chunk[1]
           }
-          addTemperature(client,temperature);
+         // addTemperature(client,temperature);
           console.log("Temperature : " + temperature)
   
           let humidity : Humidity = {
@@ -98,7 +98,7 @@ async function serialOpen(lineNum : String)
             name : "Humidity",
             humidity : chunk[2]
           }
-          addHumidity(client,humidity);
+        //  addHumidity(client,humidity);
           console.log("Humidity : " + humidity)
         }
 
@@ -109,6 +109,6 @@ async function serialOpen(lineNum : String)
 
 
     ( function main(){
-      let Linenumber : String="1"; // set Line number
+      let Linenumber : string="1"; // set Line number
       serialOpen(Linenumber);
     })();
