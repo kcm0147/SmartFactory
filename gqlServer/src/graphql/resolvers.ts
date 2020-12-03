@@ -1,6 +1,6 @@
 import { PubSub } from "graphql-yoga";
-import { Temperature, Humidity, Weight, sampleTemperatures, 
-    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight, sampleDevicelist } from "./db";
+import { Temperature, Humidity, Weight, sampleDevicelist, sampleTemperatures, 
+    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight } from "./db";
 
 export const pubsub = new PubSub();
 
