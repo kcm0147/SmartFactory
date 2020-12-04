@@ -8,7 +8,6 @@ import Registerform from "./Registerform.js";
 class Registration extends React.Component {
   render() {
     return (
-      <Router>
         <div className="content">
           <h2> Registration Section </h2>
           <Row>
@@ -28,7 +27,7 @@ class Registration extends React.Component {
                       md="3"
                       sm="4"
                     >
-                      <Link to="/registerform">
+                      <Link to="/admin/registerform/1/Temperature">
                         <button style={{ background: "#11ffee00", width: "100%" }} className="font-icon-detail">
                           <i className="tim-icons icon-alert-circle-exc" />
                           <p style={{ fontSize: 16, fontWeight: "bold" }}>공정라인 1</p>
@@ -42,7 +41,7 @@ class Registration extends React.Component {
                       md="3"
                       sm="4"
                     >
-                      <Link to="/registerform">
+                      <Link to="/admin/registerform/3/Humidity">
                         <button style={{ background: "#11ffee00", width: "100%" }} className="font-icon-detail">
                           <i className="tim-icons icon-alert-circle-exc" />
                           <p style={{ fontSize: 16, fontWeight: "bold" }}>공정라인 3</p>
@@ -56,8 +55,6 @@ class Registration extends React.Component {
             </Col>
           </Row>
         </div>
-        <Route path="/registerform" component={Registerform} />
-      </Router>
     );
   }
 }

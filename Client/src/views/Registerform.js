@@ -33,8 +33,13 @@ import {
 } from "reactstrap";
 
 class Registerform extends React.Component {
+  constructor(props){
+    super(props);
+  }
   render() {
-    return (
+    const {line, device} = this.props.match.params;
+    console.log(line);
+     return (
       <>
         <div className="content">
           <Row>
@@ -51,7 +56,7 @@ class Registerform extends React.Component {
                           <label style={{fontSize:16,fontWeight:"bold"}}>공정라인 위치 (disabled)</label>
                           <Input
                             style={{fontSize:14,fontWeight:"bold"}}
-                            defaultValue="공정라인 1"
+                            defaultValue={line}
                             disabled
                             placeholder="Company"
                             type="text"
