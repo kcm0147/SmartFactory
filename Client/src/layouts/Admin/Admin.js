@@ -5,7 +5,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import ProcessLine1 from "line1/Lineboard1.js";
+import ProcessLine from "variables/ProcessLine.js";
 
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
@@ -78,21 +78,21 @@ class Admin extends React.Component {
         if (loading) return null;
 
         let size = data.devicelist.length, visit = new Array(100), makable;
-        console.log(visit);
+        // console.log(visit);
         for (let i = 0; i < size; i++) {
           if (visit[data.devicelist[i].line] == null) {
             makable = true;
             for (let j = 0; j < routes.length; j++) {
-              console.log(routes[j].name);
+              // console.log(routes[j].name);
               if (routes[j].name == `Processline${data.devicelist[i].line}`) makable = false;
             }
             if (makable) {
               routes.push(
                 {
-                  path: `/Processline${data.devicelist[i].line}`,
+                  path: `/Processline/${data.devicelist[i].line}`,
                   name: `Processline${data.devicelist[i].line}`,
                   icon: "tim-icons icon-align-center",
-                  component: ProcessLine1,
+                  component: ProcessLine,
                   layout: "/admin"
                 }
               );
@@ -100,7 +100,7 @@ class Admin extends React.Component {
             }
           }
         }
-        console.log(routes);
+        // console.log(routes);
 
         return routes.map((prop, key) => {
           if (prop.layout === "/admin") {
