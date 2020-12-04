@@ -34,7 +34,7 @@ import {
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-class Registerform extends React.Component {
+class DeviceForm extends React.Component {
   constructor(props){
     super(props);
     let url = this.props.location.pathname.split('/');
@@ -57,6 +57,7 @@ class Registerform extends React.Component {
     //   </Query>
     // }
     // };
+
   }
 
   render() {
@@ -128,54 +129,13 @@ class Registerform extends React.Component {
                         </FormGroup>
                       </Col>
                     </Row>
-                    {/* <Row>
-                      <Col md="12">
-                        <FormGroup>
-                          <label>Address</label>
-                          <Input
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            placeholder="Home Address"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="pr-md-1" md="4">
-                        <FormGroup>
-                          <label>City</label>
-                          <Input
-                            defaultValue="Mike"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="4">
-                        <FormGroup>
-                          <label>Country</label>
-                          <Input
-                            defaultValue="Andrew"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="4">
-                        <FormGroup>
-                          <label>Postal Code</label>
-                          <Input placeholder="ZIP Code" type="number" />
-                        </FormGroup>
-                      </Col>
-                    </Row> */}
+                    
                     <Row>
                       <Col md="8">
                         <FormGroup>
                           <label style={{fontSize:16,fontWeight:"bold"}}>기타 사항</label>
                           <Input
                             cols="80"
-                            //defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            //that two seat Lambo."
                             placeholder="Here can be your description"
                             rows="4"
                             type="textarea"
@@ -199,4 +159,4 @@ class Registerform extends React.Component {
   }
 }
 
-export default Registerform;
+export default DeviceForm;
