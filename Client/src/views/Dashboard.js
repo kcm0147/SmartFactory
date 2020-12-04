@@ -6,23 +6,12 @@ import { Bar } from "react-chartjs-2";
 
 // reactstrap components
 import {
-  // Button,
-  // ButtonGroup,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
-  //DropdownToggle,
-  //DropdownMenu,
-  //DropdownItem,
-  //UncontrolledDropdown,
-  //Label,
-  //FormGroup,
-  //Input,
-  //Table,
   Row,
   Col,
-  //UncontrolledTooltip
 } from "reactstrap";
 
 // core components
@@ -33,14 +22,7 @@ import {
   // chartExample4
 } from "variables/charts.js";
 
-import TemperatureChart1 from "line1/chart/TemperatureChart1.js"
-import HumidityChart1 from "line1/chart/HumidityChart1.js"
-import TemperatureChart2 from "line2/chart/TemperatureChart2.js"
-import HumidityChart2 from "line2/chart/HumidityChart2.js"
-import TemperatureChart3 from "line3/chart/TemperatureChart3.js"
-import HumidityChart3 from "line3/chart/HumidityChart3.js"
-import WeightChart3 from "line3/chart/WeightChart3.js"
-
+import Renderchart from "../variables/Renderchart.js";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -58,133 +40,17 @@ class Dashboard extends React.Component {
     return (
         <div className="content">
           <Row>
-          <Col xs="6">
-              <Card>
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 1</h5>
-                      <CardTitle tag="h3">
-                        Temperature
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <TemperatureChart1/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card>
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 1</h5>
-                      <CardTitle tag="h3">
-                        Humidity
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <HumidityChart1/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
+            <Renderchart line="1" device="Temperature"/>
+            <Renderchart line="1" device="Humidity"/>
           </Row>
           <Row>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 2</h5>
-                      <CardTitle tag="h3">
-                        Temperature
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <TemperatureChart2/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category"> Process Line 2</h5>
-                      <CardTitle tag="h3">
-                        Humidity
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <HumidityChart2/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
+            <Renderchart line="2" device="Temperature"/>
+            <Renderchart line="2" device="Humidity"/>
           </Row>
           <Row>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Temperature
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <TemperatureChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Humidity
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <HumidityChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-          <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Weight
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <WeightChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
+            <Renderchart line="3" device="Temperature"/>
+            <Renderchart line="3" device="Humidity"/>
+            <Renderchart line="3" device="Weight"/>
           </Row>
         </div>
     );
