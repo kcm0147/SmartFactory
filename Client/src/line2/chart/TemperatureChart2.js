@@ -33,6 +33,7 @@ class TemperatureChart2 extends React.Component {
         {({ data, loading }) => {
           if (loading) return null;
           if(data.newTemperature.label != 2) this.mine = false;
+          else this.mine = true;
           const newdata = data;
 
           return <Query query={gql`${this.querystr}`}>
