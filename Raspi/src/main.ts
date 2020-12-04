@@ -7,7 +7,7 @@ import 'cross-fetch/polyfill';
 
 const Readline = SerialPort.parsers.Readline;
 
-const port = new SerialPort('/dev/cu.usbmodem14201', {
+const port = new SerialPort('/dev/cu.usbserial-1420', {
     baudRate: 9600
 });
 
