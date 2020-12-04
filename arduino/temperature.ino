@@ -1,3 +1,4 @@
+//line1 temperature and humidity
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
@@ -18,52 +19,14 @@ void setup() {
   Serial.begin(9600); 
   dht.begin();
 
-  Serial.println("DHT 센서 출력 초기 값 ");
   sensor_t sensor;
 
   dht.temperature().getSensor(&sensor);
 
-  Serial.println("------------------------------------");
-
-  Serial.println("Temperature");
-
-  Serial.print  ("Sensor:       "); Serial.println(sensor.name);
-
-  Serial.print  ("Driver Ver:   "); Serial.println(sensor.version);
-
-  Serial.print  ("Unique ID:    "); Serial.println(sensor.sensor_id);
-
-  Serial.print  ("Max Value:    "); Serial.print(sensor.max_value); Serial.println(" *C");
-
-  Serial.print  ("Min Value:    "); Serial.print(sensor.min_value); Serial.println(" *C");
-
-  Serial.print  ("Resolution:   "); Serial.print(sensor.resolution); Serial.println(" *C");  
-
-  Serial.println("------------------------------------");
 
   // Print humidity sensor details.
 
   dht.humidity().getSensor(&sensor);
-
-  Serial.println("------------------------------------");
-
-  Serial.println("Humidity");
-
-  Serial.print  ("Sensor:       "); Serial.println(sensor.name);
-
-  Serial.print  ("Driver Ver:   "); Serial.println(sensor.version);
-
-  Serial.print  ("Unique ID:    "); Serial.println(sensor.sensor_id);
-
-  Serial.print  ("Max Value:    "); Serial.print(sensor.max_value); Serial.println("%");
-
-  Serial.print  ("Min Value:    "); Serial.print(sensor.min_value); Serial.println("%");
-
-  Serial.print  ("Resolution:   "); Serial.print(sensor.resolution); Serial.println("%");  
-
-  Serial.println("------------------------------------");
-
-
   delayMS = sensor.min_delay / 1000;
 
 }
@@ -82,12 +45,13 @@ void loop() {
   dht.temperature().getEvent(&event);
 
   if (isnan(event.temperature)) { // 숫자가 아니면   
-    Serial.println("Error reading temperature!");
+    //Serial.println("Error reading temperature!");
   }
 
   else {
 
     //Serial.print("Temperature: ");
+    Serial.print("TandHSensor,");
     Serial.print(event.temperature);
     Serial.print(",");
     //Serial.println(" *C");
@@ -100,7 +64,7 @@ void loop() {
 
   if (isnan(event.relative_humidity)) {
 
-    Serial.println("Error reading humidity!");
+   // Serial.println("Error reading humidity!");
 
   }
 

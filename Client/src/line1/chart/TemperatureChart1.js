@@ -8,6 +8,8 @@ import gql from "graphql-tag";
 class TemperatureChart1 extends React.Component {
   constructor(props) {
     super(props);
+    this.mine = true;
+    this.mytemp = { temperatures: new Array() };
     this.querystr = gql`query {
       temperatures {
         label: id
@@ -29,18 +31,28 @@ class TemperatureChart1 extends React.Component {
     return (
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
-          if (loading) return null;
+          if (loading)  return null;
+          if(data.newTemperature.label != 1) this.mine = false;
+          else this.mine = true;
           const newdata = data;
 
           return <Query query={gql`${this.querystr}`}>
             {({ data, loading }) => {
               if (loading) return null;
 
-              data.temperatures.push(newdata.newTemperature);
-              while(data.temperatures.length >20) data.temperatures.shift();
+              if(this.mine) {
+                data.temperatures.push(newdata.newTemperature);
+                this.mytemp.temperatures = [];
+                let length = data.temperatures.length;
+                for(let i=0; i<length; i++)
+                  if(data.temperatures[i].label == 1) this.mytemp.temperatures.push(data.temperatures[i]);
+                while(data.temperatures.length > 40) data.temperatures.shift();
+                console.log(data);
+                console.log(this.mytemp);
+              }
 
               // create graphql2chartjs instance
-              let g2c = new graphql2chartjs(data, () => {
+              let g2c = new graphql2chartjs(this.mytemp, () => {
                 return {
                   chartType: 'line',
                   pointBackgroundColor: 'yellow',

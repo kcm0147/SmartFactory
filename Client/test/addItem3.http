@@ -7,7 +7,7 @@ mutation itemData($id : String!, $name : String!, $weight: String!){
 }
 
 {
-    "id" : "6",
+    "id" : "1",
     "name" : "temp",
     "weight" : "20"
 }

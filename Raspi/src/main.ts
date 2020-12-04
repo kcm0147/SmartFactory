@@ -7,7 +7,11 @@ import 'cross-fetch/polyfill';
 
 const Readline = SerialPort.parsers.Readline;
 
+<<<<<<< HEAD
 const port = new SerialPort('/dev/cu.usbserial-1420', {
+=======
+const port = new SerialPort('/dev/ttyACM0', {
+>>>>>>> 9caaa4fefbcb7886f42d0a74245aacac609e58cf
     baudRate: 9600
 });
 
@@ -82,7 +86,7 @@ async function serialOpen(lineNum : string)
         let chunk = data.split(',') // chunk[0] is sensor name
         console.log(chunk)
        
-        
+        console.log("hihi")
         if(!chunk[0].localeCompare("TandHSensor")){
           let temperature : Temperature = {
             id : lineNum,
