@@ -1,6 +1,6 @@
 import { PubSub } from "graphql-yoga";
-import { Temperature, Humidity, Weight, sampleDevicelist, sampleTemperatures, 
-    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight } from "./db";
+import { Temperature, Humidity, Weight,Devicelist,sampleDevicelist, sampleTemperatures, 
+    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight,addDevicelist,addRequestlist,sampleRequestlist,Requestlist } from "./db";
 
 
 export const pubsub = new PubSub();
@@ -10,7 +10,8 @@ export const resolvers = {
         temperatures: () => sampleTemperatures,
         humidities: () => sampleHumidities,
         weights: () => sampleWeights,
-        devicelist: () => sampleDevicelist
+        devicelist: () => sampleDevicelist,
+        requestlist: () => sampleRequestlist
     },
     Mutation: {
         addTemperature: (_ : any, newTemperature : Temperature) => {
@@ -30,7 +31,21 @@ export const resolvers = {
                 newWeight
               })
             return addWeight(newWeight)
+        },
+        addDevicelist: (_ : any, newDevice : Devicelist) => {
+            pubsub.publish("NEW_DEVICE", {
+                newDevice
+              })
+            return addDevicelist(newDevice)
+        },
+        addRequestlist: (_ : any, newRequestlist : Requestlist) => {
+            pubsub.publish("NEW_REQUEST", {
+                newRequestlist
+              })
+            return addRequestlist(newRequestlist)
         }
+        
+        
     },
     Subscription: {
         newTemperature: {
@@ -44,6 +59,14 @@ export const resolvers = {
         newWeight: {
             subscribe: (_:any, __:any) => 
             pubsub.asyncIterator("NEW_WEIGHT")
+        },
+        newDevicelist:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_DEVICE")
+        },
+        newRequestlist:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_REQUEST")
         }
     }
 }

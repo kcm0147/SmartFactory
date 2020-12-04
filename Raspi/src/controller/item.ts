@@ -11,6 +11,12 @@ export interface Humidity{
   humidity : string
 }
 
+export type Requestlist ={
+  line : string,
+  device : string
+}
+
+
 
 // export const GET_ITEMS = gql`
 // query {
@@ -40,6 +46,12 @@ mutation ($id : String!,$name : String!, $temperature : String!){
 export const ADD_HUMIDITY = gql`
 mutation ($id: String!,$name : String!,$humidity : String!){
   result : addHumidity(id:$id,name : $name,humidity : $humidity) 
+}
+`;
+
+export const ADD_REQUEST = gql`
+mutation ($line: String!,$device : String!){
+  result : addRequestlist(line : $line,device: $device) 
 }
 `;
 

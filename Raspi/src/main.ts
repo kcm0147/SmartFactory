@@ -1,14 +1,15 @@
 import SerialPort from "serialport";
 import ApolloClient, { gql } from "apollo-boost";
 
-import {Temperature,Humidity,ADD_TEMPERATURE,ADD_HUMIDITY} from "./controller/item"
+import {Temperature,Humidity,Requestlist,ADD_TEMPERATURE,ADD_HUMIDITY,ADD_REQUEST} from "./controller/item"
 import 'cross-fetch/polyfill';
+import { Request } from "cross-fetch";
 
 
 const Readline = SerialPort.parsers.Readline;
 
 
-const port = new SerialPort('/dev/cu.usbserial-1420', {
+const port = new SerialPort('/dev/cu.usbmodem14101', {
     baudRate: 9600
 });
 
@@ -18,8 +19,13 @@ const parser = port.pipe(new Readline({
 }));
 
 const client = new ApolloClient({
-  uri: "http://192.168.43.175:4000/"
+  uri: "http://localhost:4000/"
 });
+
+let flag = false;
+
+export let sampleRequestList : string[] = new Array<string>()
+
 
 // async function getItems(client : ApolloClient<unknown>){
 //   const result = await client.query ({
@@ -58,6 +64,15 @@ async function addHumidity(client : ApolloClient<unknown>, obj : Humidity){
   console.log(result)
 }
 
+async function addRequestlist(client : ApolloClient<unknown>, obj : Requestlist){
+  const result = await client.mutate ({
+    mutation: ADD_REQUEST,
+    variables: obj
+  });
+
+  console.log(result)
+}
+
 // async function delItem(client : ApolloClient<unknown>, id : number){
 //   const result = await client.mutate ({
 //     mutation: DEL_ITEM,
@@ -83,8 +98,30 @@ async function serialOpen(lineNum : string)
         let chunk = data.split(',') // chunk[0] is sensor name
         console.log(chunk)
        
-        console.log("hihi")
-        if(!chunk[0].localeCompare("TandHSensor")){
+    
+        if(!chunk[0].localeCompare("TandHSensor")){ // temperature and humidity
+          
+          for(var i=0;i<sampleRequestList.length;i++){
+            var cur : string = sampleRequestList[i];
+            if(!cur.localeCompare(chunk[0])){
+              flag=true;
+            }
+          }
+
+          if(!flag){
+            sampleRequestList.push(chunk[0]);
+
+            let requestCur : Requestlist = {
+              line : lineNum,
+              device : chunk[0]
+            }
+            addRequestlist(client,requestCur);
+            console.log("add Request!!!")
+            flag=true;
+          }
+
+          }
+            
           let temperature : Temperature = {
             id : lineNum,
             name : "Temperature",
@@ -100,12 +137,12 @@ async function serialOpen(lineNum : string)
           }
           addHumidity(client,humidity);
           console.log("Humidity : " + humidity)
-        }
+
+        });
 
     
-    });
-
-  }
+      }
+    
 
     ( function main(){
       let Linenumber : string="2"; // set Line number

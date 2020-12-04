@@ -1,9 +1,9 @@
 /build
 Client/node_modules
 gqlServer/node_modules
-Raspi/node_modules/
 /build
 testRasp/gqlServer/node_modules
 testRasp/raspi/node_modules
 loginServer/config/dev.js
 loginServer/node_modules
+Raspi/node_modules

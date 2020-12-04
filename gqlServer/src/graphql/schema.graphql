@@ -19,6 +19,10 @@ type Devicelist {
    line: String!
    device: String!
 }
+type Requestlist {
+   line: String!
+   device: String!
+}
 
 
 # Define Query
@@ -27,6 +31,7 @@ type Query {
    humidities: [Humidity!]!
    weights: [Weight!]!
    devicelist: [Devicelist!]!
+   requestlist: [Requestlist!]!
 }
 
 #Define Mutation
@@ -34,6 +39,8 @@ type Mutation {
    addTemperature(id: String!, name : String!,temperature : String!): Boolean!
    addHumidity(id: String!, name : String!,humidity : String!): Boolean!
    addWeight(id: String!, name : String!,weight : String!): Boolean!
+   addDevicelist(line: String!,device: String!) : Boolean!
+   addRequestlist(line: String!,device: String!) : Boolean!
 }
 
 #Define Subscription
@@ -41,4 +48,6 @@ type Subscription {
    newTemperature: Temperature
    newHumidity: Humidity
    newWeight: Weight
+   newDevicelist: Devicelist
+   newRequestlist : Requestlist
 }
