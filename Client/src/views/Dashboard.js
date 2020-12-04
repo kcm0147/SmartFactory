@@ -1,33 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import {
-  // Button,
-  // ButtonGroup,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  //DropdownToggle,
-  //DropdownMenu,
-  //DropdownItem,
-  //UncontrolledDropdown,
-  //Label,
-  //FormGroup,
-  //Input,
-  //Table,
-  Row,
-  Col,
-  //UncontrolledTooltip
-} from "reactstrap";
-
-import TemperatureChart1 from "line1/chart/TemperatureChart1.js"
-import HumidityChart1 from "line1/chart/HumidityChart1.js"
-import TemperatureChart2 from "line2/chart/TemperatureChart2.js"
-import HumidityChart2 from "line2/chart/HumidityChart2.js"
-import TemperatureChart3 from "line3/chart/TemperatureChart3.js"
-import HumidityChart3 from "line3/chart/HumidityChart3.js"
-import WeightChart3 from "line3/chart/WeightChart3.js"
+import { Row } from "reactstrap";
 
 import Renderchart from "variables/Renderchart.js"
 
