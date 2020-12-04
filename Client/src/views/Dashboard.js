@@ -37,9 +37,17 @@ import TemperatureChart3 from "line3/chart/TemperatureChart3.js"
 import HumidityChart3 from "line3/chart/HumidityChart3.js"
 import WeightChart3 from "line3/chart/WeightChart3.js"
 
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
     this.state = {
       bigChartData: "data1"
     };
@@ -51,139 +59,147 @@ class Dashboard extends React.Component {
     });
   };
   render() { // Dashboard row 시작되는 위치
-    return (
-        <div className="content">
-          <Row>
-          <Col xs="6">
-              <Card>
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 1</h5>
-                      <CardTitle tag="h3">
-                        Temperature
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <TemperatureChart1/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card>
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 1</h5>
-                      <CardTitle tag="h3">
-                        Humidity
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <HumidityChart1/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category">Process Line 2</h5>
-                      <CardTitle tag="h3">
-                        Temperature
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <TemperatureChart2/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                    <h5 className="card-category"> Process Line 2</h5>
-                      <CardTitle tag="h3">
-                        Humidity
-                      </CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <HumidityChart2/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Temperature
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <TemperatureChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Humidity
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <HumidityChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-          <Col xs="6">
-              <Card className="card-chart">
-                <CardHeader>
-                  <h5 className="card-category">Process Line 3</h5>
-                  <CardTitle tag="h3">
-                    Weight
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <WeightChart3/>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-    );
+    return <Query query={gql`${this.querystr}`}>
+      {({ data, loading }) => {
+        if (loading) return null;
+
+        console.log(data);
+
+        return (
+          <div className="content">
+            <Row>
+              <Col xs="6">
+                <Card>
+                  <CardHeader>
+                    <Row>
+                      <Col className="text-left" sm="6">
+                        <h5 className="card-category">Process Line 1</h5>
+                        <CardTitle tag="h3">
+                          Temperature
+                    </CardTitle>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    <div className="chart-area">
+                      <TemperatureChart1 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col xs="6">
+                <Card>
+                  <CardHeader>
+                    <Row>
+                      <Col className="text-left" sm="6">
+                        <h5 className="card-category">Process Line 1</h5>
+                        <CardTitle tag="h3">
+                          Humidity
+                    </CardTitle>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    <div className="chart-area">
+                      <HumidityChart1 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="6">
+                <Card className="card-chart">
+                  <CardHeader>
+                    <Row>
+                      <Col className="text-left" sm="6">
+                        <h5 className="card-category">Process Line 2</h5>
+                        <CardTitle tag="h3">
+                          Temperature
+                    </CardTitle>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    <div>
+                      <TemperatureChart2 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col xs="6">
+                <Card className="card-chart">
+                  <CardHeader>
+                    <Row>
+                      <Col className="text-left" sm="6">
+                        <h5 className="card-category"> Process Line 2</h5>
+                        <CardTitle tag="h3">
+                          Humidity
+                    </CardTitle>
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <CardBody>
+                    <div>
+                      <HumidityChart2 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="6">
+                <Card className="card-chart">
+                  <CardHeader>
+                    <h5 className="card-category">Process Line 3</h5>
+                    <CardTitle tag="h3">
+                      Temperature
+                </CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <div>
+                      <TemperatureChart3 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col xs="6">
+                <Card className="card-chart">
+                  <CardHeader>
+                    <h5 className="card-category">Process Line 3</h5>
+                    <CardTitle tag="h3">
+                      Humidity
+                </CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <div>
+                      <HumidityChart3 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="6">
+                <Card className="card-chart">
+                  <CardHeader>
+                    <h5 className="card-category">Process Line 3</h5>
+                    <CardTitle tag="h3">
+                      Weight
+                </CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <div>
+                      <WeightChart3 />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
+    </Query>
   }
 }
 
