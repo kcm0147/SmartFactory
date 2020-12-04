@@ -1,7 +1,11 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
+import ProcessLine1 from "line1/Lineboard1.js";
 
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
@@ -19,6 +23,11 @@ var ps;
 class Admin extends React.Component {
   constructor(props) {
     super(props);
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
     this.state = {
       loginstate: true,  // login 페이지 출력 여부
       backgroundColor: "blue",
@@ -64,19 +73,50 @@ class Admin extends React.Component {
   };
   ////////////////////// layout == "/admin"
   getRoutes = routes => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
+    return <Query query={gql`${this.querystr}`}>
+      {({ data, loading }) => {
+        if (loading) return null;
+
+        let size = data.devicelist.length, visit = new Array(100), makable;
+        console.log(visit);
+        for (let i = 0; i < size; i++) {
+          if (visit[data.devicelist[i].line] == null) {
+            makable = true;
+            for (let j = 0; j < routes.length; j++) {
+              console.log(routes[j].name);
+              if (routes[j].name == `Processline${data.devicelist[i].line}`) makable = false;
+            }
+            if (makable) {
+              routes.push(
+                {
+                  path: `/Processline${data.devicelist[i].line}`,
+                  name: `Processline${data.devicelist[i].line}`,
+                  icon: "tim-icons icon-align-center",
+                  component: ProcessLine1,
+                  layout: "/admin"
+                }
+              );
+              visit[data.devicelist[i].line] = true;
+            }
+          }
+        }
+        console.log(routes);
+
+        return routes.map((prop, key) => {
+          if (prop.layout === "/admin") {
+            return (
+              <Route
+                path={prop.layout + prop.path}
+                component={prop.component}
+                key={key}
+              />
+            );
+          } else {
+            return null;
+          }
+        });
+      }}
+    </Query>
   };
   handleBgClick = color => {
     this.setState({ backgroundColor: color });
@@ -99,6 +139,7 @@ class Admin extends React.Component {
         <>
           <div className="wrapper">
             <Sidebar
+              {...this.getRoutes(routes)}
               {...this.props}
               routes={routes}
               bgColor={this.state.backgroundColor}
@@ -136,9 +177,9 @@ class Admin extends React.Component {
         </>
       );
     }
-    else{
-      return(
-        <Login/>
+    else {
+      return (
+        <Login />
       )
     }
   }
