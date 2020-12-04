@@ -29,7 +29,7 @@ class TemperatureChart2 extends React.Component {
     return (
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
-          if (loading) return null;
+          if (loading || data.newTemperature.label != '3') return null;
           const newdata = data;
 
           return <Query query={gql`${this.querystr}`}>
