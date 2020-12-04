@@ -24,9 +24,17 @@ import {
 
 import Renderchart from "../variables/Renderchart.js";
 
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
     this.state = {
       bigChartData: "data1"
     };
@@ -38,8 +46,15 @@ class Dashboard extends React.Component {
     });
   };
   render() { // Dashboard row 시작되는 위치
-    return (
-        <div className="content">
+    return <Query query={gql`${this.querystr}`}>
+      {({ data, loading }) => {
+        if (loading) return null;
+
+        console.log(data);
+
+        return (
+          <div className="content">
+            <div className="content">
           <Row>
             <Renderchart line="1" device="Temperature"/>
             <Renderchart line="1" device="Humidity"/>
@@ -54,7 +69,10 @@ class Dashboard extends React.Component {
             <Renderchart line="3" device="Weight"/>
           </Row>
         </div>
-    );
+          </div>
+        );
+      }}
+    </Query>
   }
 }
 
