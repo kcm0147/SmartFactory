@@ -18,7 +18,7 @@ import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import Reducer from './_reducers';
 import LoginPage from './components/views/LoginPage/Loginform';
-import Registerform from './components/views/RegisterPage/Registerform';
+import Registerform from './views/Registerform'; //'./components/views/RegisterPage/Registerform';
 import Auth from './hoc/auth'
 
 const hist = createBrowserHistory();
@@ -36,6 +36,7 @@ ReactDOM.render(
             <Route path="/admin" render={props => <AdminLayout {...props} />} />
             <Route exact path="/login" component={Auth(LoginPage, false) } />
             <Route exact path="/register" component={Auth(Registerform, false)} />
+            <Route path="/admin/registerform/:line?/:device?" component={Registerform} />
             <Redirect from="/" to="/admin/dashboard" /> {/*/admin/dashboard */}
           </Switch>
         </Router>

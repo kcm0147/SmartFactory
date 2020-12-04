@@ -68,8 +68,8 @@ var routes = [
   //   layout: "/admin"
   // },
   {
-    path: "/register-form",
-    name: "Register Form",
+    path: "/registerform",
+    name: "RegisterForm",
     rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-single-02",
     component: Registerform,
