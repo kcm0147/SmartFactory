@@ -2,7 +2,7 @@ import React from "react";
 
 // reactstrap components
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom"
+import { Switch, useParams, Link, Route, BrowserRouter as Router } from "react-router-dom"
 import Registerform from "./Registerform.js";
 
 class Registration extends React.Component {
@@ -49,7 +49,7 @@ class Registration extends React.Component {
                         </button>
                       </Link>
                     </Col>
-                  </Row>
+                  </Row>      
                 </CardBody>
               </Card>
             </Col>
