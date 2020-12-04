@@ -1,8 +1,4 @@
 import React from "react";
-// nodejs library that concatenates classes
-// import classNames from "classnames";
-// react plugin used to create charts
-import { Bar } from "react-chartjs-2";
 
 // reactstrap components
 import {
