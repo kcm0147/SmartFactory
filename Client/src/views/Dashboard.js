@@ -182,6 +182,23 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
           </Row>
+          <Row>
+          <Col xs="6">
+              <Card className="card-chart">
+                <CardHeader>
+                  <h5 className="card-category">Process Line 3</h5>
+                  <CardTitle tag="h3">
+                    Camera
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <div>
+                    <img src="http://192.168.43.179:8091/?action=stream"></img>
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
         </div>
     );
   }
