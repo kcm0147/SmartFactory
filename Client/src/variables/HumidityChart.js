@@ -8,6 +8,8 @@ import gql from "graphql-tag";
 class HumidityChart extends React.Component {
   constructor(props) {
     super(props);
+    this.mine = true;
+    this.myhum = { humidities: new Array() };
     this.querystr = gql`query {
       humidities {
         label: id
@@ -30,6 +32,8 @@ class HumidityChart extends React.Component {
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
           if (loading) return null;
+          if (data.newHumidity.label != this.props.line) this.mine = false;
+          else this.mine = true;
           const newdata = data;
 
           return <Query query={gql`${this.querystr}`}>
@@ -39,8 +43,19 @@ class HumidityChart extends React.Component {
               data.humidities.push(newdata.newHumidity);
               while (data.humidities.length > 20) data.humidities.shift();
 
+              if (this.mine) {
+                data.humidities.push(newdata.newHumidity);
+                this.myhum.humidities = [];
+                let length = data.humidities.length;
+                for (let i = 0; i < length; i++)
+                  if (data.humidities[i].label == this.props.line) this.myhum.humidities.push(data.humidities[i]);
+                while (data.humidities.length > 40) data.humidities.shift();
+                // console.log(data);
+                // console.log(this.mytemp);
+              }
+
               // create graphql2chartjs instance
-              let g2c = new graphql2chartjs(data, () => {
+              let g2c = new graphql2chartjs(this.myhum, () => {
                 return {
                   chartType: 'line',
                   pointBackgroundColor: 'green',

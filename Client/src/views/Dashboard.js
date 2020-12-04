@@ -1,6 +1,4 @@
 import React from "react";
-
-// reactstrap components
 import { Row } from "reactstrap";
 
 import Renderchart from "variables/Renderchart.js"
@@ -31,12 +29,14 @@ class Dashboard extends React.Component {
       {({ data, loading }) => {
         if (loading) return null;
 
+        // console.log(data);
         let size = data.devicelist.length, complist = [];
         for(let i=0; i<size; i+=2){
-          if(i+2<size)
-            complist.push(<Row><Renderchart line={data.devicelist[i].line}/><Renderchart line={data.devicelist[i+1].line}/></Row>);
+          if(i+2<=size)
+            complist.push(<Row><Renderchart line={data.devicelist[i].line} device={data.devicelist[i].device}/>
+            <Renderchart line={data.devicelist[i+1].line} device={data.devicelist[i+1].device}/></Row>);
           else
-            complist.push(<Row><Renderchart line={data.devicelist[i].line}/></Row>);
+            complist.push(<Row><Renderchart line={data.devicelist[i].line} device={data.devicelist[i].device}/></Row>);
         }
 
         return (
