@@ -50,8 +50,13 @@ class Dashboard extends React.Component {
       {({ data, loading }) => {
         if (loading) return null;
 
-        console.log(data);
-
+        var deviceList = data.devicelist;
+        var size = deviceList.length;
+        console.log(deviceList);
+        console.log(size)
+        for(var i =0; i<size; ++i)
+          console.log(deviceList[i])
+        deviceList.map(element => console.log(element.device + "!"));
         return (
           <div className="content">
             <div className="content">
