@@ -16,7 +16,7 @@
 
 */
 import React from "react";
-
+import {Link} from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -31,14 +31,43 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 class Registerform extends React.Component {
   constructor(props){
     super(props);
+    let url = this.props.location.pathname.split('/');
+    this.line = url[3];
+    this.device = url[4];
+    // gql에 this.line, this.device 넣으면 됨
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
   }
+  
+  handleSubmit(e){
+    // render() { // Dashboard row 시작되는 위치
+    //   return <Query query={gql`${this.querystr}`}>
+    //     {({ data, loading }) => {
+    //       if (loading) return null;
+    //     }}
+    //   </Query>
+    // };
+  }
+
   render() {
-    const {line, device} = this.props.match.params;
-    console.log(line);
+    // 서버에서 requestList 에 있는 공정라인의 번호와 디바이스를 
+    // 가지고 와서 동적으로 띄워야함.
+    console.log(this.props);
+    // let line, device ;
+    // let path = this.props.location.pathname.split('/');
+    // line = path[3];
+    // device = path[4];
+    var lineName = "공정라인 " + this.line;
+    console.log(this.line + this.device);
      return (
       <>
         <div className="content">
@@ -49,14 +78,14 @@ class Registerform extends React.Component {
                   <h3 className="title">Setting Table</h3>
                 </CardHeader>
                 <CardBody>
-                  <Form>
+                    <Form>
                     <Row>
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
                           <label style={{fontSize:16,fontWeight:"bold"}}>공정라인 위치 (disabled)</label>
                           <Input
                             style={{fontSize:14,fontWeight:"bold"}}
-                            defaultValue={line}
+                            defaultValue={lineName}
                             disabled
                             placeholder="Company"
                             type="text"
@@ -68,7 +97,7 @@ class Registerform extends React.Component {
                           <label style={{fontSize:16,fontWeight:"bold"}}>센서 종류 (disabled)</label>
                           <Input
                             style={{fontSize:14,fontWeight:"bold"}}
-                            defaultValue="Temperature"
+                            defaultValue={this.device}
                             disabled
                             placeholder="Company"
                             type="text"
@@ -156,7 +185,7 @@ class Registerform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit">
+                  <Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
                     Save
                   </Button>
                 </CardFooter>
