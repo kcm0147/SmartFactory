@@ -12,7 +12,10 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { Query } from "react-apollo";
+
+import { Link } from "react-router-dom"
+
+import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
 class Registerform extends React.Component {
@@ -22,14 +25,15 @@ class Registerform extends React.Component {
     this.line = url[3];
     this.device = url[4];
     // gql에 this.line, this.device 넣으면 됨
-    this.querystr = gql`query {
-      devicelist {
-        line, device
-      }
-    }`
+    this.mutatestr = gql`
+    mutation deviceData($line: String!, $device: String!) {
+      addDevicelist(line: $line, device: $device) 
+    }
+    `
   }
 
   handleSubmit(e) {
+    console.log("click");
     // render() { // Dashboard row 시작되는 위치
     //   return {<Query query={gql`${this.querystr}`}>
     //     {({ data, loading }) => {
@@ -49,7 +53,6 @@ class Registerform extends React.Component {
     // line = path[3];
     // device = path[4];
     var lineName = "공정라인 " + this.line;
-    console.log(this.line + this.device);
     return (
       <>
         <div className="content">
@@ -121,11 +124,13 @@ class Registerform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
-                    <Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                  {/* <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}> */}
+                  <Mutation mutation={this.mutatestr} variables={{line:this.line, device:this.device}}>
+                    {() => (<Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
                       Save
-                  </Button>
-                  </a>
+                    </Button>)}
+                  </Mutation>
+                  {/* </a> */}
                 </CardFooter>
               </Card>
             </Col>
