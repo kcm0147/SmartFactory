@@ -1,9 +1,6 @@
 import Dashboard from "views/Dashboard.js";
 import Registration from "views/Registration.js";
 import Setting from "views/Setting.js";
-// import ProcessLine1 from "line1/Lineboard1.js";
-// import ProcessLine2 from "line2/Lineboard2.js";
-// import ProcessLine3 from "line3/Lineboard3.js";
 import Registerform from "views/Registerform.js";
 
 var routes = [
@@ -14,27 +11,6 @@ var routes = [
     component: Dashboard,
     layout: "/admin"
   },
-  // {
-  //   path: "/Processline1",
-  //   name: "Processline1",
-  //   icon: "tim-icons icon-align-center",
-  //   component: ProcessLine1,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/Processline2",
-  //   name: "Processline2",
-  //   icon: "tim-icons icon-align-center",
-  //   component: ProcessLine2,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/Processline3",
-  //   name: "Processline3",
-  //   icon: "tim-icons icon-align-center",
-  //   component: ProcessLine3,
-  //   layout: "/admin"
-  // },
   {
     path: "/Registration",
     name: "Registration",

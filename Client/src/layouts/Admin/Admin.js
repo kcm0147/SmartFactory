@@ -78,14 +78,12 @@ class Admin extends React.Component {
         if (loading) return null;
 
         let size = data.devicelist.length, visit = new Array(100), makable;
-        // console.log(visit);
         for (let i = 0; i < size; i++) {
           if (visit[data.devicelist[i].line] == null) {
             makable = true;
-            for (let j = 0; j < routes.length; j++) {
-              // console.log(routes[j].name);
+            for (let j = 0; j < routes.length; j++)
               if (routes[j].name == `Processline${data.devicelist[i].line}`) makable = false;
-            }
+
             if (makable) {
               routes.push(
                 {
@@ -100,7 +98,6 @@ class Admin extends React.Component {
             }
           }
         }
-        // console.log(routes);
 
         return routes.map((prop, key) => {
           if (prop.layout === "/admin") {
