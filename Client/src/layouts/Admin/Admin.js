@@ -29,6 +29,7 @@ class Admin extends React.Component {
       }
     }`
     this.state = {
+      reloadable: 0,
       loginstate: true,  // login 페이지 출력 여부
       backgroundColor: "blue",
       sidebarOpened:
@@ -95,6 +96,8 @@ class Admin extends React.Component {
                 }
               );
               visit[data.devicelist[i].line] = true;
+              let comp = this.state.reloadable;
+              this.setState({ reloadable: (comp + 1) % 5 })
             }
           }
         }
