@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
       {({ data, loading }) => {
         if (loading) return null;
 
-        // console.log(data);
         let size = data.devicelist.length, complist = [];
         for(let i=0; i<size; i+=2){
           if(i+2<=size)

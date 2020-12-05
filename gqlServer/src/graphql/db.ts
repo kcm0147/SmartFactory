@@ -24,7 +24,13 @@ export type Requestlist ={
 }
 
 
-export let sampleRequestlist : Requestlist[] = new Array<Requestlist>()
+// export let sampleRequestlist : Requestlist[] = new Array<Requestlist>()
+export let sampleRequestlist : Requestlist[] = [
+    {line:"3", device:"temperature"},
+    {line:"3", device:"humidity"},
+    {line:"4", device:"temperature"},
+    {line:"4", device:"humidity"}
+]
 export let sampleDevicelist : Devicelist[] = [
     {line:"1", device:"temperature"},
     {line:"1", device:"humidity"},
