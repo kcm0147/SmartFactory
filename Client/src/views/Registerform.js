@@ -16,7 +16,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 class Registerform extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     let url = this.props.location.pathname.split('/');
     this.line = url[3];
@@ -28,8 +28,8 @@ class Registerform extends React.Component {
       }
     }`
   }
-  
-  handleSubmit(e){
+
+  handleSubmit(e) {
     // render() { // Dashboard row 시작되는 위치
     //   return {<Query query={gql`${this.querystr}`}>
     //     {({ data, loading }) => {
@@ -50,7 +50,7 @@ class Registerform extends React.Component {
     // device = path[4];
     var lineName = "공정라인 " + this.line;
     console.log(this.line + this.device);
-     return (
+    return (
       <>
         <div className="content">
           <Row>
@@ -60,28 +60,28 @@ class Registerform extends React.Component {
                   <h3 className="title">Setting Table</h3>
                 </CardHeader>
                 <CardBody>
-                    <Form>
+                  <Form>
                     <Row>
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
-                          <label style={{fontSize:16,fontWeight:"bold"}}>공정라인 위치 (disabled)</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }}>공정라인 위치 (disabled)</label>
                           <Input
-                            style={{fontSize:14,fontWeight:"bold"}}
+                            style={{ fontSize: 14, fontWeight: "bold" }}
                             defaultValue={lineName}
                             disabled
-                            placeholder="Company"
+                            placeholder="Line"
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                       <Col className="px-md-1" md="6">
                         <FormGroup>
-                          <label style={{fontSize:16,fontWeight:"bold"}}>센서 종류 (disabled)</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }}>센서 종류 (disabled)</label>
                           <Input
-                            style={{fontSize:14,fontWeight:"bold"}}
+                            style={{ fontSize: 14, fontWeight: "bold" }}
                             defaultValue={this.device}
                             disabled
-                            placeholder="Company"
+                            placeholder="Sensor"
                             type="text"
                           />
                         </FormGroup>
@@ -90,7 +90,7 @@ class Registerform extends React.Component {
                     <Row>
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
-                          <label style={{fontSize:16,fontWeight:"bold"}}> Max Value</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }}> Max Value</label>
                           <Input
                             placeholder="25"
                             type="text"
@@ -99,7 +99,7 @@ class Registerform extends React.Component {
                       </Col>
                       <Col className="pl-md-1" md="6">
                         <FormGroup>
-                          <label style={{fontSize:16,fontWeight:"bold"}} >Min Value</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }} >Min Value</label>
                           <Input
                             placeholder="21"
                             type="text"
@@ -108,7 +108,7 @@ class Registerform extends React.Component {
                       </Col>
                       <Col md="8">
                         <FormGroup>
-                          <label style={{fontSize:16,fontWeight:"bold"}}>기타 사항</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }}>기타 사항</label>
                           <Input
                             cols="80"
                             placeholder="Here can be your description"
@@ -121,9 +121,11 @@ class Registerform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
-                    Save
+                  <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                    <Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                      Save
                   </Button>
+                  </a>
                 </CardFooter>
               </Card>
             </Col>
