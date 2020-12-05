@@ -13,10 +13,12 @@ import {
   Col
 } from "reactstrap";
 
+import { Link } from "react-router-dom"
+
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
-class Registerform extends React.Component {
+class Settingform extends React.Component {
   constructor(props) {
     super(props);
     let url = this.props.location.pathname.split('/');
@@ -122,12 +124,12 @@ class Registerform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
-                  <Mutation mutation={this.mutatestr} variables={{line:this.line, device:this.device}}>
+                  <a href="http://localhost:3000/admin/Setting" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                  {/* <Mutation mutation={this.mutatestr} variables={{line:this.line, device:this.device}}> */}
                     {postMutation => (<Button className="btn-fill" color="primary" type="submit" onClick={postMutation}>
-                      Save
+                      Update
                     </Button>)}
-                  </Mutation>
+                  {/* </Mutation> */}
                   </a>
                 </CardFooter>
               </Card>
@@ -139,4 +141,4 @@ class Registerform extends React.Component {
   }
 }
 
-export default Registerform;
+export default Settingform;

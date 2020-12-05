@@ -100,6 +100,7 @@ class Sidebar extends React.Component {
           <Nav>
             {routes.map((prop, key) => {
               if (prop.redirect) return null;
+              if(prop.path.includes("form")) return null;
               return (
                 <li
                   className={

@@ -14,9 +14,9 @@ import {
 } from "reactstrap";
 
 class Renderchart extends React.Component {
-  constructor(props) {
-    super(props); // line : process line, device : sensor kind
-  }
+  // constructor(props) {
+  //   super(props); // line : process line, device : sensor kind
+  // }
 
   render() {
     let devComp;
