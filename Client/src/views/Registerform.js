@@ -124,13 +124,13 @@ class Registerform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  {/* <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}> */}
+                  <a href="http://localhost:3000/admin/Registration" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
                   <Mutation mutation={this.mutatestr} variables={{line:this.line, device:this.device}}>
-                    {() => (<Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                    {postMutation => (<Button className="btn-fill" color="primary" type="submit" onClick={postMutation}>
                       Save
                     </Button>)}
                   </Mutation>
-                  {/* </a> */}
+                  </a>
                 </CardFooter>
               </Card>
             </Col>
