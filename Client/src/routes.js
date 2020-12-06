@@ -2,6 +2,7 @@ import Dashboard from "views/Dashboard.js";
 import Registration from "views/Registration.js";
 import Setting from "views/Setting.js";
 import Registerform from "views/Registerform.js";
+import Settingform from "views/Settingform.js"
 
 var routes = [
   {
@@ -30,6 +31,13 @@ var routes = [
     name: "RegisterForm",
     icon: "tim-icons icon-single-02",
     component: Registerform,
+    layout: "/admin"
+  },
+  {
+    path: "/settingform",
+    name: "SettingForm",
+    icon: "tim-icons icon-single-02",
+    component: Settingform,
     layout: "/admin"
   }
 ];

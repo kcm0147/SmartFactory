@@ -13,9 +13,9 @@ import {
   Col
 } from "reactstrap";
 
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
-import { Mutation } from "react-apollo";
+// import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
 class Settingform extends React.Component {
@@ -33,15 +33,7 @@ class Settingform extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log("click");
-    // render() { // Dashboard row 시작되는 위치
-    //   return {<Query query={gql`${this.querystr}`}>
-    //     {({ data, loading }) => {
-    //       if (loading) return null;
-    //     }}
-    //   </Query>
-    // }
-    // };
+    alert("센서 설정이 수정되었습니다!")
   }
 
   render() {
@@ -93,7 +85,7 @@ class Settingform extends React.Component {
                     <Row>
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
-                          <label style={{ fontSize: 16, fontWeight: "bold" }}> Max Value</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }}> Update Max Value</label>
                           <Input
                             placeholder="25"
                             type="text"
@@ -102,7 +94,7 @@ class Settingform extends React.Component {
                       </Col>
                       <Col className="pl-md-1" md="6">
                         <FormGroup>
-                          <label style={{ fontSize: 16, fontWeight: "bold" }} >Min Value</label>
+                          <label style={{ fontSize: 16, fontWeight: "bold" }} > Update Min Value</label>
                           <Input
                             placeholder="21"
                             type="text"
@@ -124,11 +116,13 @@ class Settingform extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <a href="http://localhost:3000/admin/Setting" className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
+                  <a href="http://localhost:3000/admin/Setting" className="btn-fill" color="primary" type="submit">
                   {/* <Mutation mutation={this.mutatestr} variables={{line:this.line, device:this.device}}> */}
-                    {postMutation => (<Button className="btn-fill" color="primary" type="submit" onClick={postMutation}>
+                    {/* {postMutation => (<Button className="btn-fill" color="primary" type="submit" onClick={postMutation}> */}
+                    <Button className="btn-fill" color="primary" type="submit" onClick={this.handleSubmit}>
                       Update
-                    </Button>)}
+                    </Button>
+                    {/* </Button>)} */}
                   {/* </Mutation> */}
                   </a>
                 </CardFooter>

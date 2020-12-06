@@ -31,15 +31,7 @@ class Registerform extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log("click");
-    // render() { // Dashboard row 시작되는 위치
-    //   return {<Query query={gql`${this.querystr}`}>
-    //     {({ data, loading }) => {
-    //       if (loading) return null;
-    //     }}
-    //   </Query>
-    // }
-    // };
+    alert("센서 등록이 완료되었습니다!")
   }
 
   render() {
