@@ -38,6 +38,7 @@ export let sampleRequestlist : Requestlist[] = [
 export let sampleDevicelist : Devicelist[] = [
     {line:"1", device:"temperature"},
     {line:"1", device:"humidity"},
+    {line:"1", device:"camera"},
     {line:"2", device:"temperature"},
     {line:"2", device:"humidity"}
 ]
