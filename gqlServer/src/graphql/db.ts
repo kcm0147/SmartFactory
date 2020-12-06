@@ -108,6 +108,14 @@ export function addRequestlist (obj : Requestlist){
         }
     
     }
+    for(var i=0;i<sampleDevicelist.length;i++){
+        var cur : Devicelist = sampleDevicelist[i];
+
+        if(!cur.device.localeCompare(obj.device)&& !(cur.line.localeCompare(obj.line))){
+            console.log("exist...");
+            return false;
+        }
+    }
 
     sampleRequestlist.push(obj);
     console.log("add Reqest...");
