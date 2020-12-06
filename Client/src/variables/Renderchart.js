@@ -3,6 +3,8 @@ import React from "react";
 import TemperatureChart from "variables/TemperatureChart.js"
 import HumidityChart from "variables/HumidityChart.js"
 import WeightChart from "variables/WeightChart.js"
+import Cameramodule from "variables/Cameramodule.js"
+import Flamedetectsensor from "variables/Flamedetectsensor.js"
 
 import {
   Card,
@@ -25,12 +27,18 @@ class Renderchart extends React.Component {
         devComp = <TemperatureChart line={this.props.line} />
         break;
       case "humidity":
-        devComp = <HumidityChart line={this.props.ling} />
+        devComp = <HumidityChart line={this.props.line} />
         break;
       case "weight":
         devComp = <WeightChart line={this.props.line} />
         break;
-      default:
+      case "camera":
+        devComp = <Cameramodule/>
+        break;
+      case "fire":
+        devComp = <Flamedetectsensor/>
+        break;
+      default: 
         devComp = <></>;
     } // 센서별 적합한 차트 컴포넌트 선택
 

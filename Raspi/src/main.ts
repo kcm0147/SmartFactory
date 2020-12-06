@@ -120,7 +120,7 @@ async function serialOpen(lineNum: string) {
     else if(!chunk[0].localeCompare("ForceSensor")){
         responseWeight(lineNum,chunk[0],chunk[1])
     }
-    else if(!chunk[0].localeCompare("Fire")){
+    else if(!chunk[0].localeCompare("FlameSensor")){
         responseFire(lineNum,chunk[0],chunk[1])
     }
 

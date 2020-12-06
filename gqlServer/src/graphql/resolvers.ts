@@ -1,8 +1,6 @@
 import { PubSub } from "graphql-yoga";
-import {
-    Temperature, Humidity, Weight, Burn, Devicelist, sampleDevicelist, sampleTemperatures,
-    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight, addDevicelist, addRequestlist, addFire, deleteRequestlist, sampleRequestlist, Requestlist,sampleFires
-} from "./db";
+import { Temperature, Humidity, Weight, Fire, Devicelist, sampleDevicelist, sampleTemperatures,
+    sampleHumidities, sampleWeights, sampleFires, addTemperature, addHumidity, addWeight, addFire, addDevicelist,addRequestlist, deleteRequestlist,sampleRequestlist,Requestlist} from "./db";
 
 
 export const pubsub = new PubSub();
@@ -14,7 +12,7 @@ export const resolvers = {
         weights: () => sampleWeights,
         fires: () => sampleFires,
         devicelist: () => sampleDevicelist,
-        requestlist: () => sampleRequestlist,
+        requestlist: () => sampleRequestlist
     },
     Mutation: {
         addTemperature: (_: any, newTemperature: Temperature) => {
@@ -35,7 +33,7 @@ export const resolvers = {
             })
             return addWeight(newWeight)
         },
-        addFire: (_: any, newFire: Burn) => {
+        addFire: (_: any, newFire: Fire) => {
             pubsub.publish("NEW_FIRE", {
                 newFire
             })
@@ -73,17 +71,17 @@ export const resolvers = {
             subscribe: (_: any, __: any) =>
                 pubsub.asyncIterator("NEW_WEIGHT")
         },
-        newDevicelist: {
-            subscribe: (_: any, __: any) =>
-                pubsub.asyncIterator("NEW_DEVICE")
+        newFire:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_FIRE")
         },
-        newFire: {
-            subscribe: (_: any, __: any) =>
-                pubsub.asyncIterator("NEW_FIRE")
+        newDevicelist:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_DEVICE")
         },
-        newRequestlist: {
-            subscribe: (_: any, __: any) =>
-                pubsub.asyncIterator("NEW_REQUEST")
+        newRequestlist:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_REQUEST")
         },
         DeleteRequestlist: {
             subscribe: (_: any, __: any) =>
