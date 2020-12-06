@@ -92,8 +92,7 @@ class AdminNavbar extends React.Component {
       console.log(response.data);
       if(response.data.success){
         alert('Logout Succeeded');
-        //render() { return <Redirect to={'/login'}/>}
-        //this.history.push('/login');
+        window.location.href="http://localhost:3000/login";
       } else{
         alert('Logout Failed');
       }
