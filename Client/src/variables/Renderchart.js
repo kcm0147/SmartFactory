@@ -4,6 +4,7 @@ import TemperatureChart from "variables/TemperatureChart.js"
 import HumidityChart from "variables/HumidityChart.js"
 import WeightChart from "variables/WeightChart.js"
 import Cameramodule from "variables/Cameramodule.js"
+import Flamedetectsensor from "variables/Flamedetectsensor.js"
 
 import {
   Card,
@@ -33,6 +34,9 @@ class Renderchart extends React.Component {
         break;
       case "camera":
         devComp = <Cameramodule/>
+        break;
+      case "fire":
+        devComp = <Flamedetectsensor/>
         break;
       default: 
         devComp = <></>;
