@@ -9,7 +9,7 @@ import { Request } from "cross-fetch";
 const Readline = SerialPort.parsers.Readline;
 
 
-const port = new SerialPort('/dev/cu.usbmodem14101', {
+const port = new SerialPort('/dev/cu.usbmodem14201', {
   baudRate: 9600
 });
 
@@ -19,7 +19,7 @@ const parser = port.pipe(new Readline({
 }));
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/"
+  uri: "http://192.168.43.175:4000/"
 });
 
 
@@ -118,13 +118,11 @@ async function serialOpen(lineNum: string) {
         responseTandH(lineNum,chunk[0],chunk[1],chunk[2]);
     }
     else if(!chunk[0].localeCompare("Weight")){
-
+        responseWeight(lineNum,chunk[0],chunk[1])
     }
     else if(!chunk[0].localeCompare("Fire")){
-
+        responseFire(lineNum,chunk[0],chunk[1])
     }
-
-    
 
   });
 
@@ -183,8 +181,23 @@ function responseWeight(lineNum:string,device : string,resWeight : string){
 
 }
 
-function responseFire(lineNum:string,device : string,resTemperature : string){
+function responseFire(lineNum:string,device : string,resFire : string){
 
+  let flag=false;
+
+  flag=checkRequestlist(device)
+
+  if (!flag) {
+    inputRequestDevice(lineNum,device)
+  }
+
+  let fire: Fire = {
+    id: lineNum,
+    name: "Fire",
+    fire: resFire
+  }
+  addFire(client, fire);
+  console.log("Fire : " + resFire)
 }
 
 
@@ -211,10 +224,6 @@ function inputRequestDevice(lineNum:string,device : string){
     addRequestlist(client, requestCur);
     console.log("add Request!!!")
 }
-
-
-
-
 
 
 
