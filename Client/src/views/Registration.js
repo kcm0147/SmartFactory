@@ -24,7 +24,6 @@ class Registration extends React.Component {
       {({ data, loading }) => {
         if (loading) return null;
 
-        // console.log(data);
         let size = data.requestlist.length, registerlist = [];
         for (let i = 0; i < size; i++) {
           registerlist.push(<Renderregistration 

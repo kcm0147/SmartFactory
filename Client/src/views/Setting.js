@@ -1,67 +1,55 @@
 import React from "react";
 
-// reactstrap components
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import Rendersetting from "variables/Rendersetting.js"
 
 class Setting extends React.Component {
+  constructor(props) {
+    super(props)
+    this.querystr = gql`query {
+      devicelist {
+        line, device
+      }
+    }`
+  }
   render() {
-    return (
-      <div className="content">
-        <h2>Setting Section</h2>
-        <Row>
-            <Col md="12">
-              <Card>
-                <CardHeader>
-                  <h4 className="title">공정라인별 설정 테이블 보기</h4>
-                  <p className="category">
-                    각 공정라인 버튼을 클릭해 공정라인 센서 세부 설정을 변경하십시오.
+    return <Query query={gql`${this.querystr}`}>
+      {({ data, loading }) => {
+        if (loading) return null;
+
+        let size = data.devicelist.length, devicelist = [];
+        for (let i = 0; i < size; i++) {
+          devicelist.push(<Rendersetting
+            line={data.devicelist[i].line} device={data.devicelist[i].device} />)
+        }
+
+        return (
+          <div className="content">
+            <h2>Setting Section</h2>
+            <Row>
+              <Col md="12">
+                <Card>
+                  <CardHeader>
+                    <h4 className="title">공정라인별 설정 테이블 보기</h4>
+                    <p className="category">
+                      각 공정라인 버튼을 클릭해 공정라인 센서 세부 설정을 변경하십시오.
                   </p>
-                </CardHeader>
-                <CardBody className="all-icons">
-                  <Row>
-                    <Col
-                      className="font-icon-list col-xs-6 col-xs-6"
-                      lg="2"
-                      md="3"
-                      sm="4"
-                    >
-                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
-                        <i className="tim-icons icon-alert-circle-exc" />
-                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 1</p>
-                        <p style={{fontSize:14}}>Temperature</p>
-                      </button>
-                    </Col>
-                    <Col
-                      className="font-icon-list col-xs-6 col-xs-6"
-                      lg="2"
-                      md="3"
-                      sm="4"
-                    >
-                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
-                        <i className="tim-icons icon-alert-circle-exc" />
-                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 2</p>
-                        <p style={{fontSize:14}}>Humidity</p>
-                      </button>
-                    </Col>
-                    <Col
-                      className="font-icon-list col-xs-6 col-xs-6"
-                      lg="2"
-                      md="3"
-                      sm="4"
-                    >
-                      <button style={{background:"#11ffee00",width:"100%"}} className="font-icon-detail">
-                        <i className="tim-icons icon-alert-circle-exc" />
-                        <p style={{fontSize:16,fontWeight:"bold"}}>공정라인 3</p>
-                        <p style={{fontSize:14}}>Humidity</p>
-                      </button>
-                    </Col>
+                  </CardHeader>
+                  <CardBody className="all-icons">
+                    <Row>
+                      {devicelist}
                     </Row>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-      </div>
-    );
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
+    </Query>
   }
 }
 
