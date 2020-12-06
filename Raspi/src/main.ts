@@ -186,10 +186,10 @@ function responseFire(lineNum:string,device : string,resFire : string){
 
   let flag=false;
 
-  flag=checkRequestlist(device)
+  flag=checkRequestlist("fire")
 
   if (!flag) {
-    inputRequestDevice(lineNum,device)
+    inputRequestDevice(lineNum,"fire")
   }
 
   let fire: Fire = {
