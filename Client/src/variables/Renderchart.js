@@ -26,7 +26,7 @@ class Renderchart extends React.Component {
         devComp = <TemperatureChart line={this.props.line} />
         break;
       case "humidity":
-        devComp = <HumidityChart line={this.props.ling} />
+        devComp = <HumidityChart line={this.props.line} />
         break;
       case "weight":
         devComp = <WeightChart line={this.props.line} />
