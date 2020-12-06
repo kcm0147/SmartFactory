@@ -8,7 +8,7 @@ class TemperatureChart extends React.Component {
   constructor(props) {
     super(props);
     this.mine = true;
-    this.maxvalue = 26;
+    this.maxvalue = 25;
     this.outofbound = false;
     this.alertmsg=<div style={{color:"yellow", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}> SAFE CONDITION </div>;
     this.mytemp = { temperatures: new Array() };
@@ -34,7 +34,7 @@ class TemperatureChart extends React.Component {
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
           this.outofbound = false;
-          this.alertmsg=<div style={{color:"yellow", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}> SAFE CONDITION </div>;;
+          // this.alertmsg=<div style={{color:"yellow", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}> SAFE CONDITION </div>;;
           
           if (loading) return null;
           if (data.newTemperature.label != this.props.line) this.mine = false;
@@ -57,11 +57,12 @@ class TemperatureChart extends React.Component {
                       this.alertmsg = <div style={{color:"red", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}>DETECT OUT OF BOUND VALUE</div>
                     }
                   }
+                if(!this.outofbound) this.alertmsg=<div style={{color:"yellow", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}> SAFE CONDITION </div>;
                 while (data.temperatures.length > 40) data.temperatures.shift();
               }
 
               let g2c;
-              
+
               // create graphql2chartjs instance
               if (this.outofbound) {
                 g2c = new graphql2chartjs(this.mytemp, () => {

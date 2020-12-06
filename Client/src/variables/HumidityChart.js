@@ -35,7 +35,7 @@ class HumidityChart extends React.Component {
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
           this.outofbound = false;
-          this.alertmsg = <div style={{ color: "yellow", textAlign: "center", fontWeight: "bold", fontSize: "20px" }}> SAFE CONDITION </div>;;
+          // this.alertmsg = <div style={{ color: "yellow", textAlign: "center", fontWeight: "bold", fontSize: "20px" }}> SAFE CONDITION </div>;;
 
           if (loading) return null;
           if (data.newHumidity.label != this.props.line) this.mine = false;
@@ -45,9 +45,6 @@ class HumidityChart extends React.Component {
           return <Query query={gql`${this.querystr}`}>
             {({ data, loading }) => {
               if (loading) return null;
-
-              data.humidities.push(newdata.newHumidity);
-              while (data.humidities.length > 20) data.humidities.shift();
 
               if (this.mine) {
                 data.humidities.push(newdata.newHumidity);
@@ -61,6 +58,7 @@ class HumidityChart extends React.Component {
                       this.alertmsg = <div style={{ color: "red", textAlign: "center", fontWeight: "bold", fontSize: "20px" }}>DETECT OUT OF BOUND VALUE</div>
                     }
                   }
+                if(!this.outofbound) this.alertmsg=<div style={{color:"yellow", textAlign:"center", fontWeight:"bold", fontSize:"20px"}}> SAFE CONDITION </div>;
                 while (data.humidities.length > 40) data.humidities.shift();
               }
 
