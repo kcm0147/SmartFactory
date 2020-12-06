@@ -98,17 +98,6 @@ class AdminNavbar extends React.Component {
       }
     })
   };
-  // onClickHandler = () => {
-  //   axios.get('api/users/logout')
-  //       .then(response => {
-  //           if(response.data.success){
-  //               this.history.push('/login'); //props.history.push('/login');
-  //           } else {
-  //               alert('로그아웃 실패');
-  //           }
-  //           console.log(response.data);
-  //       })
-  // };
   render() {
     return (
       <>
