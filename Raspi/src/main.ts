@@ -136,10 +136,11 @@ function responseTandH(lineNum:string,device : string,resTemperature : string,re
   let flag=false;
 
   
-  flag=checkRequestlist(device)
+  flag=(checkRequestlist("temperature") && checkRequestlist("humidity"))
 
   if (!flag) {
-    inputRequestDevice(lineNum,device)
+    inputRequestDevice(lineNum,"temperature")
+    inputRequestDevice(lineNum,"humidity")
   }
 
   let temperature: Temperature = {
@@ -165,10 +166,10 @@ function responseWeight(lineNum:string,device : string,resWeight : string){
 
   let flag=false;
 
-  flag=checkRequestlist(device)
+  flag=checkRequestlist("weight")
 
   if (!flag) {
-    inputRequestDevice(lineNum,device)
+    inputRequestDevice(lineNum,"weight")
   }
 
   let weight: Weight = {
@@ -177,7 +178,7 @@ function responseWeight(lineNum:string,device : string,resWeight : string){
     weight: resWeight
   }
   addWeight(client, weight);
-  console.log("Weight : " + weight)
+  console.log("weight : " + weight)
 
 }
 
