@@ -9,7 +9,7 @@ import { Request } from "cross-fetch";
 const Readline = SerialPort.parsers.Readline;
 
 
-const port = new SerialPort('/dev/cu.usbmodem14201', {
+const port = new SerialPort('/dev/ttyACM0', {
   baudRate: 9600
 });
 
