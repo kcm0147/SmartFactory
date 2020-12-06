@@ -9,5 +9,5 @@ mutation itemData($id : String!, $name : String!, $temperature: String!){
 {
     "id" : "1",
     "name" : "temp",
-    "temperature" : "26"
+    "temperature" : "27"
 }
