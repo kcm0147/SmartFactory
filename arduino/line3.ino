@@ -7,8 +7,7 @@
 #define DHTPIN            2   
 #define DHTTYPE           DHT11     // DHT 11 
 
-int flame = 3;      // 불꽃감지 센서 핀 번호 3
-int state = 0;      // 불꽃감지 센서의 상태 값 저장 변수
+int flame = A0;      // 불꽃감지 센서 핀 번호 A0
 
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
@@ -78,16 +77,14 @@ void loop() {
 
   }
 
-  //불꽃 감지 센서
-    state = digitalRead(flame);   // 불꽃 감지 센서값 입력받음
-  
-  if (state == 0){              // 불꽃감지 센서의 값이 0일때(불꽃이 감지 되었을 때)
-    Serial.println("ON");       // 시리얼 통신에 센서값 출력해 주기.
-    delay(100);                
+  int val = analogRead(flame);
+  Serial.print("FlameSensor,");
+  //Serial.println(val);
+  if(val < 1000){
+    Serial.println("1");
   }
-  else {                        // 불꽃감지 센서의 값이 1일때 (불꽃이 감지 되지 않았을 때)    
-    Serial.println("OFF");      // 시리얼 통신에 센서값 출력해 주기.
+  else{ 
+    Serial.println("0");
   }
-  delay(100);
-
+  delay(100); 
 }

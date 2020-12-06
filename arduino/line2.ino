@@ -1,5 +1,5 @@
 
-//line1 temperature and humidity
+//line2 temperature and humidity
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
