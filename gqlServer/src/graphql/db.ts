@@ -13,6 +13,13 @@ export type Weight = {
     name : string,
     weight : string
 }
+
+export type Fire = {
+    id : string,
+    name : string,
+    weight : string
+}
+
 export type Devicelist = {
     line : string,
     device : string
@@ -45,12 +52,20 @@ export let sampleDevicelist : Devicelist[] = [
 export let sampleTemperatures : Temperature[] = []
 export let sampleHumidities : Humidity[] = []
 export let sampleWeights : Weight[] = []
+export let sampleFires : Fire[] = []
 
 export function addTemperature (obj : Temperature){
     if(obj.name === undefined)  return false;
     sampleTemperatures.push(obj);
     return true;
 }
+
+export function addFire (obj : Fire){
+    if(obj.name === undefined)  return false;
+    sampleFires.push(obj);
+    return true;
+}
+
 export function addHumidity (obj : Humidity){
     if(obj.name === undefined)  return false;
     sampleHumidities.push(obj);

@@ -15,6 +15,13 @@ type Weight {
    name: String!
    weight : String!
 }
+
+type Fire = {
+    id : String!
+    name : String!
+    weight : String!
+}
+
 type Devicelist {
    line: String!
    device: String!
@@ -32,6 +39,7 @@ type Query {
    weights: [Weight!]!
    devicelist: [Devicelist!]!
    requestlist: [Requestlist!]!
+   fires: [Fire!]!
 }
 
 #Define Mutation
@@ -39,6 +47,7 @@ type Mutation {
    addTemperature(id: String!, name : String!,temperature : String!): Boolean!
    addHumidity(id: String!, name : String!,humidity : String!): Boolean!
    addWeight(id: String!, name : String!,weight : String!): Boolean!
+   addFire(id: String!, name : String!,weight : String!): Boolean!
    addDevicelist(line: String!,device: String!) : Boolean!
    addRequestlist(line: String!,device: String!) : Boolean!
    deleteRequestlist(line : String!,device : String!) : Boolean!
@@ -49,6 +58,7 @@ type Subscription {
    newTemperature: Temperature
    newHumidity: Humidity
    newWeight: Weight
+   newFire: Fire
    newDevicelist: Devicelist
    newRequestlist : Requestlist
    DeleteRequestlist : Requestlist
