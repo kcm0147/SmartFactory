@@ -137,22 +137,11 @@ function responseTandH(lineNum:string,device : string,resTemperature : string,re
 
   let flag=false;
 
-  for (var i = 0; i < sampleRequestList.length; i++) {
-    var cur: string = sampleRequestList[i];
-    if (!cur.localeCompare(device)) {
-      flag = true;
-    }
-  }
+  
+  flag=checkRequestlist(device)
 
   if (!flag) {
-    sampleRequestList.push(device);
-
-    let requestCur: Requestlist = {
-      line: lineNum,
-      device: device
-    }
-    addRequestlist(client, requestCur);
-    console.log("add Request!!!")
+    inputRequestDevice(lineNum,device)
   }
 
   let temperature: Temperature = {
@@ -174,13 +163,56 @@ function responseTandH(lineNum:string,device : string,resTemperature : string,re
 
 }
 
-function responseWeight(lineNum:string,device : string,resTemperature : string){
+function responseWeight(lineNum:string,device : string,resWeight : string){
+
+  let flag=false;
+
+  flag=checkRequestlist(device)
+
+  if (!flag) {
+    inputRequestDevice(lineNum,device)
+  }
+
+  let weight: Weight = {
+    id: lineNum,
+    name: "Weight",
+    weight: resWeight
+  }
+  addWeight(client, weight);
+  console.log("Weight : " + weight)
 
 }
 
 function responseFire(lineNum:string,device : string,resTemperature : string){
 
 }
+
+
+
+function checkRequestlist(device : string){
+
+  for (var i = 0; i < sampleRequestList.length; i++) {
+    var cur: string = sampleRequestList[i];
+    if (!cur.localeCompare(device)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function inputRequestDevice(lineNum:string,device : string){
+  sampleRequestList.push(device);
+
+    let requestCur: Requestlist = {
+      line: lineNum,
+      device: device
+    }
+    addRequestlist(client, requestCur);
+    console.log("add Request!!!")
+}
+
+
 
 
 
