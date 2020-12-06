@@ -41,6 +41,7 @@ type Mutation {
    addWeight(id: String!, name : String!,weight : String!): Boolean!
    addDevicelist(line: String!,device: String!) : Boolean!
    addRequestlist(line: String!,device: String!) : Boolean!
+   deleteRequestlist(line : String!,device : String!) : Boolean!
 }
 
 #Define Subscription
@@ -50,4 +51,5 @@ type Subscription {
    newWeight: Weight
    newDevicelist: Devicelist
    newRequestlist : Requestlist
+   DeleteRequestlist : Requestlist
 }

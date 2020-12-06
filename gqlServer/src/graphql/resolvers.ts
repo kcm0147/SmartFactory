@@ -1,6 +1,6 @@
 import { PubSub } from "graphql-yoga";
 import { Temperature, Humidity, Weight,Devicelist,sampleDevicelist, sampleTemperatures, 
-    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight,addDevicelist,addRequestlist,sampleRequestlist,Requestlist } from "./db";
+    sampleHumidities, sampleWeights, addTemperature, addHumidity, addWeight,addDevicelist,addRequestlist,deleteRequestlist,sampleRequestlist,Requestlist } from "./db";
 
 
 export const pubsub = new PubSub();
@@ -43,9 +43,13 @@ export const resolvers = {
                 newRequestlist
               })
             return addRequestlist(newRequestlist)
+        },
+        deleteRequestlist: (_ : any, curRequestlist : Requestlist) => {
+            pubsub.publish("NEW_REQUESTDELETE", {
+                curRequestlist
+              })
+            return deleteRequestlist(curRequestlist.line,curRequestlist.device)
         }
-        
-        
     },
     Subscription: {
         newTemperature: {
@@ -67,6 +71,10 @@ export const resolvers = {
         newRequestlist:{
             subscribe: (_:any, __:any) => 
             pubsub.asyncIterator("NEW_REQUEST")
+        },
+        DeleteRequestlist:{
+            subscribe: (_:any, __:any) => 
+            pubsub.asyncIterator("NEW_REQUESTDELETE")
         }
     }
 }

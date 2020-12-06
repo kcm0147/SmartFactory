@@ -5,7 +5,6 @@ X-REQUEST-TYPE: GraphQL
 mutation addRequestlist($line : String!,$device : String!){
   addRequestlist(line : $line, device : $device) 
 }
-
 {
     "line" : "5",
     "device" : "4"
