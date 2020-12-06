@@ -117,7 +117,7 @@ async function serialOpen(lineNum: string) {
     if (!chunk[0].localeCompare("TandHSensor")) { // temperature and humidity
         responseTandH(lineNum,chunk[0],chunk[1],chunk[2]);
     }
-    else if(!chunk[0].localeCompare("Weight")){
+    else if(!chunk[0].localeCompare("ForceSensor")){
         responseWeight(lineNum,chunk[0],chunk[1])
     }
     else if(!chunk[0].localeCompare("Fire")){
@@ -228,6 +228,6 @@ function inputRequestDevice(lineNum:string,device : string){
 
 
 (function main() {
-  let Linenumber: string = "2"; // set Line number
+  let Linenumber: string = "1"; // set Line number
   serialOpen(Linenumber);
 })();
