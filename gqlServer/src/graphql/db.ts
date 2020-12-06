@@ -72,6 +72,7 @@ export function addDevicelist (obj : Devicelist){
         }
     }
 
+    deleteRequestlist(obj.line,obj.device);
     sampleDevicelist.push(obj);
     return true;
 }
@@ -92,5 +93,13 @@ export function addRequestlist (obj : Requestlist){
 
     sampleRequestlist.push(obj);
     console.log("add Reqest...");
+    return true;
+}
+
+export function deleteRequestlist (line : string,device : string){
+    
+    let filtered = sampleRequestlist.filter(i => {return (!i.line.localeCompare(line) && !i.device.localeCompare(device))});
+    filtered.map(e => (sampleRequestlist.splice(sampleRequestlist.indexOf(e), 1)));
+
     return true;
 }

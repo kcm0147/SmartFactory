@@ -1,7 +1,7 @@
 import SerialPort from "serialport";
 import ApolloClient, { gql } from "apollo-boost";
 
-import {Temperature,Humidity,Requestlist,ADD_TEMPERATURE,ADD_HUMIDITY,ADD_REQUEST} from "./controller/item"
+import {Temperature,Humidity,Requestlist,Weight,ADD_TEMPERATURE,ADD_HUMIDITY,ADD_REQUEST,ADD_WEIGHT} from "./controller/item"
 import 'cross-fetch/polyfill';
 import { Request } from "cross-fetch";
 
@@ -67,6 +67,15 @@ async function addHumidity(client : ApolloClient<unknown>, obj : Humidity){
 async function addRequestlist(client : ApolloClient<unknown>, obj : Requestlist){
   const result = await client.mutate ({
     mutation: ADD_REQUEST,
+    variables: obj
+  });
+
+  console.log(result)
+}
+
+async function addWeight(client : ApolloClient<unknown>, obj : Weight){
+  const result = await client.mutate ({
+    mutation: ADD_WEIGHT,
     variables: obj
   });
 
