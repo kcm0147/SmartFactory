@@ -17,7 +17,7 @@ export type Weight = {
 export type Fire = {
     id : string,
     name : string,
-    weight : string
+    fire : string
 }
 
 export type Devicelist = {
@@ -45,7 +45,7 @@ export let sampleRequestlist : Requestlist[] = [
 export let sampleDevicelist : Devicelist[] = [
     {line:"1", device:"temperature"},
     {line:"1", device:"humidity"},
-    {line:"1", device:"camera"},
+    {line:"1", device:"weight"},
     {line:"2", device:"temperature"},
     {line:"2", device:"humidity"}
 ]
@@ -60,22 +60,24 @@ export function addTemperature (obj : Temperature){
     return true;
 }
 
+export function addHumidity (obj : Humidity){
+    if(obj.name === undefined)  return false;
+    sampleHumidities.push(obj);
+    return true;
+}
+
+export function addWeight (obj : Weight){
+    if(obj.name === undefined)  return false;
+    sampleWeights.push(obj);
+    return true;
+}
+
 export function addFire (obj : Fire){
     if(obj.name === undefined)  return false;
     sampleFires.push(obj);
     return true;
 }
 
-export function addHumidity (obj : Humidity){
-    if(obj.name === undefined)  return false;
-    sampleHumidities.push(obj);
-    return true;
-}
-export function addWeight (obj : Weight){
-    if(obj.name === undefined)  return false;
-    sampleWeights.push(obj);
-    return true;
-}
 export function addDevicelist (obj : Devicelist){
     if(obj.device === undefined)  return false;
     // sampleDevicelist 안에 line과 device들을 For문을 이용해서 검사한후에 중복된 line과 device들이 없으면 추가 (return true), 그게 아니라면 거절(return false)
