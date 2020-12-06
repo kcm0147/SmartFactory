@@ -63,7 +63,7 @@ mutation ($id: String!,$name : String!,$humidity : String!){
 
 export const ADD_WEIGHT = gql`
 mutation ($id: String!,$name : String!,$weight : String!){
-  result : addHumidity(id:$id,name : $name,weight : $weight) 
+  result : addWeight(id:$id,name : $name,weight : $weight) 
 }
 `;
 

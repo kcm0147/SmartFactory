@@ -117,10 +117,10 @@ async function serialOpen(lineNum: string) {
     if (!chunk[0].localeCompare("TandHSensor")) { // temperature and humidity
         responseTandH(lineNum,chunk[0],chunk[1],chunk[2]);
     }
-    else if(!chunk[0].localeCompare("Weight")){
+    else if(!chunk[0].localeCompare("ForceSensor")){
         responseWeight(lineNum,chunk[0],chunk[1])
     }
-    else if(!chunk[0].localeCompare("Fire")){
+    else if(!chunk[0].localeCompare("FlameSensor")){
         responseFire(lineNum,chunk[0],chunk[1])
     }
 
@@ -136,10 +136,11 @@ function responseTandH(lineNum:string,device : string,resTemperature : string,re
   let flag=false;
 
   
-  flag=checkRequestlist(device)
+  flag=(checkRequestlist("temperature") && checkRequestlist("humidity"))
 
   if (!flag) {
-    inputRequestDevice(lineNum,device)
+    inputRequestDevice(lineNum,"temperature")
+    inputRequestDevice(lineNum,"humidity")
   }
 
   let temperature: Temperature = {
@@ -165,10 +166,10 @@ function responseWeight(lineNum:string,device : string,resWeight : string){
 
   let flag=false;
 
-  flag=checkRequestlist(device)
+  flag=checkRequestlist("weight")
 
   if (!flag) {
-    inputRequestDevice(lineNum,device)
+    inputRequestDevice(lineNum,"weight")
   }
 
   let weight: Weight = {
@@ -177,7 +178,7 @@ function responseWeight(lineNum:string,device : string,resWeight : string){
     weight: resWeight
   }
   addWeight(client, weight);
-  console.log("Weight : " + weight)
+  console.log("weight : " + weight)
 
 }
 
@@ -228,6 +229,6 @@ function inputRequestDevice(lineNum:string,device : string){
 
 
 (function main() {
-  let Linenumber: string = "2"; // set Line number
+  let Linenumber: string = "1"; // set Line number
   serialOpen(Linenumber);
 })();
