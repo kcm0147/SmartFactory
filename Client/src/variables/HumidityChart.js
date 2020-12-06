@@ -35,8 +35,7 @@ class HumidityChart extends React.Component {
       <Subscription subscription={gql`${this.subscribestr}`}>
         {({ data, loading }) => {
           this.outofbound = false;
-          // this.alertmsg = <div style={{ color: "yellow", textAlign: "center", fontWeight: "bold", fontSize: "20px" }}> SAFE CONDITION </div>;;
-
+          
           if (loading) return null;
           if (data.newHumidity.label != this.props.line) this.mine = false;
           else this.mine = true;
