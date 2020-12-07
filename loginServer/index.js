@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const {auth} = require('./middleware/auth');
 const {User} = require("./models/User");
 const port = 5000
-const config  = require('./config/Key');
 
 //새로운 컴포넌트 = higherOrderComponent(다른 컴포넌트) 
 
