@@ -36,20 +36,21 @@ export type Requestlist = {
 export let sampleRequestlist: Requestlist[] = [
     { line: "3", device: "temperature" },
     { line: "3", device: "humidity" },
-    { line: "4", device: "temperature" },
-    { line: "4", device: "humidity" },
-    { line: "5", device: "temperature" },
-    { line: "5", device: "humidity" },
-    { line: "6", device: "temperature" },
-    { line: "6", device: "humidity" }
+    // { line: "4", device: "temperature" },
+    // { line: "4", device: "humidity" },
+    // { line: "5", device: "temperature" },
+    // { line: "5", device: "humidity" },
+    // { line: "6", device: "temperature" },
+    // { line: "6", device: "humidity" }
 ]
 export let sampleDevicelist : Devicelist[] = [
-    {line:"1", device:"temperature"},
-    {line:"1", device:"humidity"},
-    {line:"1", device:"weight"},
-    {line:"2", device:"temperature"},
-    {line:"2", device:"humidity"},
-    {line:"2", device:"fire"}
+    // {line:"1", device:"temperature"},
+    // {line:"1", device:"humidity"},
+    // {line:"1", device:"weight"},
+    // {line:"2", device:"temperature"},
+    // {line:"2", device:"humidity"},
+    // {line:"2", device:"fire"}
+    {line:"1", device:"camera"}
 ]
 export let sampleTemperatures: Temperature[] = []
 export let sampleHumidities: Humidity[] = []
