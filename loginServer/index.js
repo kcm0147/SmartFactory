@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const config = require('./config/Key');
 const {auth} = require('./middleware/auth');
 const {User} = require("./models/User");
 const port = 5000
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://ggolong:kwon0879@ggolong.rxnj0.mongodb.net/ggolong?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {//'mongodb+srv://ggolong:kwon0879@ggolong.rxnj0.mongodb.net/ggolong?retryWrites=true&w=majority', {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
